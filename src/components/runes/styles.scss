@@ -1,0 +1,66 @@
+@import './../../variables';
+
+.runes-block {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    background-color: $mainBackgroundColor;
+    border: 2px solid $mainBorderColor;
+    z-index: 2;
+
+    .block-title {
+        display: flex;
+
+        .title {
+            flex-grow: 1;
+        }
+    }
+
+    .runes-action {
+        border-bottom: 2px solid rgb(84, 84, 84);
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .runes-list {
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
+        margin: 5px;
+        justify-content: space-evenly;
+    }
+}
+
+.rune-data-container {
+    width: 120px;
+    text-align: left;
+
+    .title {
+        display: inline-block;
+        width: 50px;
+    }
+
+    .property-value {
+        &.positive {
+            color: greenyellow;
+        }
+        &.negative {
+            color: red;
+        }
+    }
+    .main-data {
+        margin-bottom: 10px;
+    }
+    .rune-rarity {
+        &.common {
+            color: $commonRarity;
+        }
+        &.rare {
+            color: $rareRarity;
+        }
+        &.unique {
+            color: $uniqueRarity;
+        }
+    }
+}

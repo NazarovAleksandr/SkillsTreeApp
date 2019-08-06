@@ -1,0 +1,76 @@
+@import '../../variables.scss';
+
+.schools {
+    &-block {
+        width: 200px;
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+        background-color: $mainBackgroundColor;
+        border: 2px solid $mainBorderColor;
+        z-index: 2;
+    
+        .actions-panel {
+            display: flex;
+            padding: 5px;
+
+            .action {
+                margin: auto;
+                min-width: 44px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    &-list {
+        flex-grow: 1;
+        overflow: auto;
+        margin: 5px;
+
+        .school {
+            padding: 16px;
+            color: lightgray;
+            cursor: pointer;
+            border-bottom: #514e5a 1px solid;
+            display: flex;
+
+            &:first-child {
+                border-top: #514e5a 1px solid;
+            }
+
+            &.active, &:hover {
+                color: #faa318;
+            }
+
+            .title {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .active-container {
+                overflow: hidden;
+
+                .input {
+                    background: none;
+                    border: none;
+                    outline: none;
+                    padding: 0;
+                    color: #faa318;
+                    font-size: 16px;
+
+                    @supports (display:-ms-grid) {
+                        transform: translateX(-1px);
+                    }
+                }
+            }
+        }
+    }
+}

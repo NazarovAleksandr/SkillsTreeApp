@@ -1,0 +1,106 @@
+@import './variables.scss';
+
+.rune-socket {
+    width: 64px;
+    height: 64px;
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 40px;
+    background: #171717;
+    vertical-align: middle;
+    box-shadow: 0 2px #000;
+    margin: 8px;
+
+    &.unique {
+        color: $uniqueRarity;
+    }
+
+    &.common {
+        color: $commonRarity;
+    }
+
+    &.rare {
+        color: $rareRarity;
+    }
+}
+
+.rune {
+    &-image {
+        width: 64px;
+        height: 64px;
+    }
+
+    &.used {
+        background-color: yellow;
+    }
+}
+
+.block-title {
+    border-bottom: 2px solid $mainBorderColor;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #faa318;
+
+    .title {
+        padding: 6px;
+        display: inline-block;
+        text-transform: uppercase;
+    }
+}
+
+.action {
+    color: rgb(250, 163, 24);
+    border: 1px solid #545454;
+    display: inline-block;
+    padding: 5px;
+    box-shadow: 2px 2px #000;
+    text-align: center;
+    cursor: default;
+    position: relative;
+    user-select: none;
+
+    &.disabled {
+        color: gray;
+    }
+
+    &:hover:not(.disabled) {
+        border-color: rgb(250, 163, 24);
+        cursor: pointer;
+    }
+}
+
+@keyframes drop-splash {
+	0% {
+        width: 70px;
+        height: 70px;
+		opacity: 1;
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	100% {
+		opacity: 0;
+        transform: scale3d(1.1, 1.1, 1);
+        width: 70px;
+        height: 70px;
+	}
+}
+
+@keyframes drop-splash-2 {
+	0% {
+        width: 70px;
+        height: 70px;
+		opacity: 1;
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	50%, 100% {
+        width: 70px;
+        height: 70px;
+		opacity: 0;
+		transform: scale3d(1.2, 1.2, 1);
+	}
+}
+
+@keyframes rotation {
+    100% {
+        transform: rotate(360deg);
+    }
+}

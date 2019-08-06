@@ -1,0 +1,8 @@
+.node-container {
+    display: flex;
+    align-items: center;
+
+    .node {
+        cursor: pointer;
+    }
+}

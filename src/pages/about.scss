@@ -1,0 +1,36 @@
+@import '../variables.scss';
+
+.about-page {
+    display: flex;
+    flex-grow: 1;
+    color: white;
+    border: 2px solid #775c31;
+    padding: 10px;
+
+    background-repeat: no-repeat;
+    background-position: right -300px center;
+    background-image: url('../../public/images/wall.jpg');
+    background-origin: border-box;
+
+    .about-block {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 550px);
+
+        .about-text {
+            text-align: justify;
+            overflow: auto;
+            color: lightgray;
+
+            .common {
+                color: $commonRarity;
+            }
+            .rare {
+                color: $rareRarity;
+            }
+            .unique {
+                color: $uniqueRarity;
+            }
+        }
+    }
+}

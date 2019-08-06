@@ -1,0 +1,35 @@
+.tree-node-tooltip {
+    width: 190px;
+
+    .actions {
+        display: flex;
+        flex-direction: row;
+
+        .action {
+            flex: 50%;
+            border: 1px solid;
+
+            &:first-child {
+                margin-right: 4px;
+            }
+
+            &:last-child {
+                margin-left: 4px;
+            }
+
+            &.disabled {
+                color: gray;
+            }
+        }
+    }
+
+    .node-info {
+        margin-top: 8px;
+        text-align: left;
+
+        .rune-info {
+            border: 1px solid;
+            padding: 5px;
+        }
+    }
+}
