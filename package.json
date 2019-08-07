@@ -4,15 +4,14 @@
   "homepage": "https://nazarovaleksandr.github.io/SkillsTreeApp/",
   "scripts": {
     "watch": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack-dev-server --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "lint": "eslint . --fix",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@types/react-beautiful-dnd": "^11.0.2",
     "@types/react-router-dom": "^4.3.4",
     "file-loader": "^4.1.0",
-    "gh-pages": "^2.1.0",
     "react": "^16.5.2",
     "react-beautiful-dnd": "^11.0.5",
     "react-dom": "^16.5.2",
@@ -34,6 +33,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
+    "gh-pages": "^2.0.1",
     "mobx": "^5.11.0",
     "mobx-react": "^6.1.1",
     "node-sass": "^4.12.0",
