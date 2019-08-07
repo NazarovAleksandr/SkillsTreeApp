@@ -90,7 +90,7 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
         this.context.show('right', tooltipContent, e.currentTarget, this.onMouseOutFromPopup);
     }
 
-    private onMouseOutFromPopup(e: React.MouseEvent<HTMLElement, MouseEvent>) {
+    private onMouseOutFromPopup = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         let related = e.relatedTarget as HTMLElement;
         if (!related.closest('.tooltip') && !related.closest('.rune-wrapper')) {
             this.context.hide();   
