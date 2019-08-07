@@ -10,10 +10,11 @@ import * as stores from './stores';
 import { Tooltip } from './components/tooltip/tooltip';
 
 const tooltipStateStore = new stores.tooltipState.TooltipStateStore();
+let basename = process.env.BASENAME || '/'
 
 const App = () => {
     return (
-        <Router>
+        <Router basename={basename}>
             <TooltipContext.Provider value={tooltipStateStore}>
                 <div className="App">
                     <div className="layout">
