@@ -1,7 +1,13 @@
 @import './../../variables';
 
 .runes-block {
-    width: 370px;
+    @media (max-width: 1200px) {
+        width: 270px;    
+    }
+    @media (min-width: 1200px) {
+        width: 370px;
+    }
+
     display: flex;
     flex-direction: column;
     background-color: $mainBackgroundColor;
