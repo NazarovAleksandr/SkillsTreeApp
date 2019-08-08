@@ -2,8 +2,12 @@
     display: flex;
     flex-grow: 1;
     position: relative;
-
-    
+    @media (orientation: portrait) {
+        flex-direction: column;
+    }
+    @media (orientation: landscape) {
+        flex-direction: row;
+    }
 
     &:before {
         content: "";
@@ -11,9 +15,15 @@
         top: 0; left: 0;
         width: 100%; height: 100%;
         background-repeat: no-repeat;
-        background-position: right -300px center;
         background-image: url('../assets/images/wall.jpg');
         filter: blur(2px);
         z-index: 1;
+
+        @media (orientation: portrait) {
+            background-position: right -450px center;
+        }
+        @media (orientation: landscape) {
+            background-position: right -300px center;
+        }
     }
 }

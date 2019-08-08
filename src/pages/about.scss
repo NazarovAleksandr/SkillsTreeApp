@@ -8,14 +8,27 @@
     padding: 10px;
 
     background-repeat: no-repeat;
-    background-position: right -300px center;
     background-image: url('../assets/images/wall.jpg');
     background-origin: border-box;
+
+    @media (orientation: portrait) {
+        background-position: right -450px center;
+    }
+    @media (orientation: landscape) {
+        background-position: right -300px center;
+    }
 
     .about-block {
         display: flex;
         flex-direction: column;
-        width: calc(100% - 550px);
+
+        @media (orientation: portrait) {
+            width: auto;
+            background-color: rgba(27, 27, 27, 0.5)
+        }
+        @media (orientation: landscape) {
+            width: calc(100% - 550px);
+        }
 
         .about-text {
             text-align: justify;

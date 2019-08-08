@@ -12,15 +12,13 @@
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
     display: flex;
-    max-width: 1650px;
-    max-height: 1100px;
     margin: auto;
 
     .layout {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        margin: 50px;
+        margin: 3%;
 
         .pages {
             flex-grow: 1;

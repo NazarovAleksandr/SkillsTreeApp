@@ -3,12 +3,19 @@
 .skillsTree-block {
     flex-grow: 1;
     overflow: auto;
-    margin-right: 20px;
     background-color: $mainBackgroundColor;
     display: flex;
     flex-direction: column;
     border: 2px solid $mainBorderColor;
     z-index: 2;
+
+    @media (orientation: portrait) {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    @media (orientation: landscape) {
+        margin-right: 20px;
+    }
 
     .tree-scrollable-container {
         flex-grow: 1;

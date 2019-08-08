@@ -3,12 +3,22 @@
 .schools {
     &-block {
         width: 200px;
-        margin-right: 20px;
         display: flex;
         flex-direction: column;
         background-color: $mainBackgroundColor;
         border: 2px solid $mainBorderColor;
         z-index: 2;
+
+        @media (orientation: portrait) {
+            margin-right: 0;
+            width: auto;
+            margin-bottom: 20px;
+            height: 270px;
+        }
+        @media (orientation: landscape) {
+            margin-right: 20px;
+            width: 200px;
+        }
     
         .actions-panel {
             display: flex;

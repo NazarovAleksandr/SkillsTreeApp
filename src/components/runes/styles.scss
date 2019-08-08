@@ -1,11 +1,15 @@
 @import './../../variables';
 
 .runes-block {
-    @media (max-width: 1200px) {
-        width: 270px;    
+    @media (orientation: landscape) and (max-width: 1200px) {
+        width: 270px;
     }
-    @media (min-width: 1200px) {
+    @media (orientation: landscape) and (min-width: 1200px) {
         width: 370px;
+    }
+    @media (orientation: portrait) {
+        width: auto;
+        height: 240px;
     }
 
     display: flex;
