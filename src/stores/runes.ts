@@ -64,35 +64,29 @@ export class RunesStore {
     }
 
     private generateImage(type: Models.RuneTypes) {
-        let imgUrl = '/images/';
-        let imagesCount = 0;
+        let imgType = '';
         switch(type) {
             case Models.RuneTypes.attack:
-                imgUrl += 'precision';
-                imagesCount = 13;
+                imgType = 'precision';
             break;
             case Models.RuneTypes.defence:
-                imgUrl += 'domination';
-                imagesCount = 10;
+                imgType = 'domination';
             break;
             case Models.RuneTypes.heal:
-                imgUrl += 'resolve';
-                imagesCount = 9;
+                imgType = 'resolve';
             break;
             case Models.RuneTypes.magic:
-                imgUrl += 'sorcery';
-                imagesCount = 12;
+                imgType = 'sorcery';
             break;
             case Models.RuneTypes.utility:
-                imgUrl += 'inspiration';
-                imagesCount = 9;
+                imgType = 'inspiration';
             break;
         }
 
-        let picNum = utils.randomizer.getRandomInt(1, imagesCount);
-        imgUrl += `/${picNum}.png`;
+        let typeImages = utils.images[imgType];
+        let picNum = utils.randomizer.getRandomInt(0, typeImages.length - 1);
 
-        return imgUrl;
+        return typeImages[picNum];
     }
 
     private generateProperties(minPropCount: number, maxPropCount: number) {
