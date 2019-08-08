@@ -10,5 +10,8 @@ module.exports = merge(common, {
                 'BASENAME': JSON.stringify('SkillsTreeApp')
             }
         })
-    ]
+    ],
+    output: {
+        publicPath: '/SkillsTreeApp/',
+    }
 });
