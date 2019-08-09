@@ -12,6 +12,13 @@ import { Tooltip } from './components/tooltip/tooltip';
 const tooltipStateStore = new stores.tooltipState.TooltipStateStore();
 let basename = process.env.BASENAME || '/'
 
+window.addEventListener('scroll', () => {
+    tooltipStateStore.hide();
+}, {
+    capture: true,
+    passive: true
+});
+
 const App = () => {
     return (
         <Router basename={basename}>

@@ -9,6 +9,7 @@ import Rune from '../runes/rune';
 import { TooltipContext } from '../../contexts/tooltip';
 import * as utils from '../../utils';
 import { Socket } from '../socket/socket';
+import { runInThisContext } from 'vm';
 
 class SkillsTree extends React.PureComponent<SkillsTreeProps> {
     static contextType = TooltipContext;
@@ -23,6 +24,7 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
         }
         let length = node.children.push(newNode);;
         this.childToParent.set(node.children[length - 1], node);
+        this.context.hide();
     }
 
     public removeChildFromParent(node: ISkillsTreeNode) {

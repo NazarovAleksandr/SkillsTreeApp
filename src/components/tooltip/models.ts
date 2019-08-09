@@ -5,7 +5,7 @@ export type TooltipPositions = 'left' | 'right' | 'top' | 'bottom';
 export interface ITooltipProps {
     content?: React.ReactNode;
     position: TooltipPositions;
-    node: any;
+    node: HTMLElement;
     visible: boolean;
     mouseOutCallback?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
