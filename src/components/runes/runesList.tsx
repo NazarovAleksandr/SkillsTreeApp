@@ -50,7 +50,7 @@ export class RunesList extends React.PureComponent<Models.IRunesListProps> {
         this.props.runesStore.addRune(newRune);
     }
 
-    private onMouseOver(e: React.MouseEvent<HTMLSpanElement, MouseEvent> | React.TouchEvent<HTMLSpanElement>, tooltipStore: TooltipStateStore, rune: Models.IRune) {
+    private onMouseOver(e: React.MouseEvent<HTMLSpanElement, MouseEvent>, tooltipStore: TooltipStateStore, rune: Models.IRune) {
         if (document.body.classList.contains(utils.constants.dragInProgress)) {
             return;
         }
@@ -80,7 +80,7 @@ export class RunesList extends React.PureComponent<Models.IRunesListProps> {
                                             tooltipStore => (
                                                 <span className="rune-wrapper" 
                                                     onMouseOver={(e) => {this.onMouseOver(e, tooltipStore, reversedRune)}}
-                                                    onTouchStart={(e) => {this.onMouseOver(e, tooltipStore, reversedRune)}}
+                                                    onClick={(e) => {this.onMouseOver(e, tooltipStore, reversedRune)}}
                                                     onMouseOut={tooltipStore.hide}>
                                                     <Rune key={reversedIdx} rune={reversedRune} isUsed={false}></Rune>
                                                 </span>
