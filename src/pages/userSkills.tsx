@@ -82,6 +82,7 @@ class UserSkillsPage extends React.PureComponent {
     
             if (rune && node) {
                 node.attachedRune = rune;
+                navigator.vibrate && navigator.vibrate([100]);
             }
         }
         document.body.classList.remove(utils.constants.dragInProgress);
@@ -89,6 +90,7 @@ class UserSkillsPage extends React.PureComponent {
 
     private onDragStart() {
         document.body.classList.add(utils.constants.dragInProgress);
+        navigator.vibrate && navigator.vibrate([100]);
     }
 
     public render() {
