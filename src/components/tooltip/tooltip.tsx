@@ -66,7 +66,6 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
 
     public render() {
         let tooltipContent = this.props.content;
-        let position = this.props.position;
         let isVisible = this.props.visible;
         let outCallback = this.props.mouseOutCallback;
 

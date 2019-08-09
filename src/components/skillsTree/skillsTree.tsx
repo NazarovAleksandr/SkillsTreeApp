@@ -82,7 +82,7 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
         }
     }
 
-    public onMouseOver(e: React.MouseEvent<HTMLElement, MouseEvent>, node: ISkillsTreeNode) {
+    public onMouseOver(e: React.MouseEvent<HTMLElement, MouseEvent> | React.TouchEvent<HTMLSpanElement>, node: ISkillsTreeNode) {
         if (document.body.classList.contains(utils.constants.dragInProgress)) {
             return;
         }
@@ -105,7 +105,10 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
                 {(provided, snapshot) => 
                     <span className="socket-wrapper" ref={provided.innerRef}>
                         <Socket rune={node.attachedRune} nodeId={node.id} isRuneOver={snapshot.isDraggingOver}>
-                            <span className="rune-wrapper" onMouseOver={(e) => {this.onMouseOver(e, node)}} onMouseOut={this.onMouseOut}>
+                            <span className="rune-wrapper"
+                                onMouseOver={(e) => {this.onMouseOver(e, node)}}
+                                onTouchStart={(e) => {this.onMouseOver(e, node)}}
+                                onMouseOut={this.onMouseOut}>
                                 {node.attachedRune && <Rune rune={node.attachedRune} isUsed={false}></Rune>}
                             </span>
                         </Socket>
