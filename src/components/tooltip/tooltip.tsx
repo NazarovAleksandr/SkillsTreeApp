@@ -3,6 +3,7 @@ import './styles.scss';
 import { observer } from "mobx-react";
 import * as Models from './models';
 import { FuncTooltip } from './funcTooltip';
+import { observable } from 'mobx';
 
 let oppositePositions = new Map<Models.TooltipPositions, Models.TooltipPositions>();
 oppositePositions.set('bottom', 'top');
@@ -14,6 +15,9 @@ oppositePositions.set('right', 'left');
 export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
     private tooltipRef = React.createRef<HTMLDivElement>();
 
+    @observable
+    private tooltipPosition: Models.TooltipPositions;
+
     public componentDidUpdate() {
         this.invalidateTooltipPosition();
     }
@@ -21,8 +25,8 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
     private invalidateTooltipPosition = () => {
         if (this.props.visible) {
             let rect = this.props.node.getBoundingClientRect();
-
             let { x, y, calculatedPosition } = this.calcTooltipCoordinates(this.props.position, rect);
+            this.tooltipPosition = calculatedPosition;
 
             this.tooltipRef.current.style.transform = `translate(${x}px, ${y}px)`;
         }
@@ -35,26 +39,23 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
 
         let x = rect.left;
         let y = rect.top;
-        let cuttingDetected;
-        switch (position) {
+        let cuttingDetected = false;
+        switch (calculatedPosition) {
             case 'left':
                 x -= refRect.width;
                 y += rect.height / 2;
+                cuttingDetected = x < 0 || (x + refRect.width) > document.body.clientWidth;
             break;
             case 'right':
                 x += rect.width;
                 y += rect.height / 2;
+                cuttingDetected = x < 0 || (x + refRect.width) > document.body.clientWidth;
             break;
             case 'bottom':
                 x += rect.width / 2;
                 y += rect.height;
             break;
         }
-
-        //debugger;
-        cuttingDetected = (x + refRect.width) > document.body.clientWidth || 
-            (y + rect.height) > document.body.clientHeight ||
-            x < 0 || y < 0;
 
         if (cuttingDetected && this.props.position === position) {
             return this.calcTooltipCoordinates(oppositePositions.get(position), this.props.node.getBoundingClientRect());
@@ -72,7 +73,7 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
         return (
             <FuncTooltip ref={this.tooltipRef}
                 isVisible={isVisible}
-                position={position}
+                position={this.tooltipPosition}
                 tooltipContent={tooltipContent}
                 mouseOutCallback={outCallback}>
             </FuncTooltip>

@@ -38,14 +38,15 @@
         }
 
         &-left {
-            transform: translate(-9px, -50%);
+            transform: translate(0, -50%);
+            padding-right: 9px;
             &:after {
                 border-top: 9px solid transparent;
                 border-bottom: 9px solid transparent;
                 border-left: 9px solid rgb(76, 76, 76);
                 top: 50%;
                 left: 100%;
-                transform: translate(-1px, -50%);
+                transform: translate(-10px, -50%);
             }
         }
 
