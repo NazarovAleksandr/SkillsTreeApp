@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Models from './models';
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
 import MagicSchool from './MagicSchool';
 import './styles.scss';
 
