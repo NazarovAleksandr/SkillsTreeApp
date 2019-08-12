@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MagicSchool /> renders the component 1`] = `
+<div
+  className="rune"
+>
+  <img
+    className="rune-image"
+    src="url"
+  />
+</div>
+`;
