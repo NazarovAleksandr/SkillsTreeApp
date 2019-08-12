@@ -1,9 +1,4 @@
-import React from 'react';
-import { shallow, mount, ReactWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import {RunesStore} from '../../src/stores/runes';
-import { IRune, RuneTypes, Rarity } from '../../src/components/runes/models';
 
 describe('Runes store', () => {
     test('Generates runes', () => {

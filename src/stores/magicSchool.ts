@@ -3,7 +3,7 @@ import * as Models from '../components/magicSchools/models';
 import * as utils from '../utils';
 
 export class MagicSchoolsStore {
-    schools: IObservableArray<Models.IMagicSchool> = observable([]);
+    private schools: IObservableArray<Models.IMagicSchool> = observable([]);
 
 	@action.bound
 	addSchool(school: Models.IMagicSchool) {
@@ -35,7 +35,7 @@ export class MagicSchoolsStore {
 }
 
 export class MagicSchoolsUIStateStore {
-	@observable private selectedSchoolId: string;
+	@observable private selectedSchoolId?: string;
 	@observable private inEditionState: boolean;
 
 	@action.bound
@@ -59,6 +59,7 @@ export class MagicSchoolsUIStateStore {
 	@action.bound
 	deselectSchool() {
 		this.selectedSchoolId = undefined;
+		this.endSchoolEdition();
 	}
 
 	getSelectedSchoolId() {
