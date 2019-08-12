@@ -22,6 +22,8 @@ export class TooltipStateStore {
         this.visible = false;
         this.position = undefined;
         this.content = undefined;
+        this.node = undefined;
+        this.outCallback = undefined;
     }
 
     public get isVisible() {

@@ -43,9 +43,10 @@ export class SkillTreesStore {
     get totalNodesCount() {
         let count = 0;
         this.trees.forEach((tree) => {
+            count++;
             if (tree.children) {
                 tree.children.forEach((child) => {
-                    count += this.getLenth(child);
+                    count += this.getLength(child);
                 });
             }
         });
@@ -61,10 +62,10 @@ export class SkillTreesStore {
         return new Set(runes);
     }
 
-    public getNode(nodeTitle: string): ISkillsTreeNode {
+    public getNode(nodeId: string): ISkillsTreeNode {
         let found;
         this.trees.find((node) => {
-            found = this.findNode(node, nodeTitle) ;
+            found = this.findNode(node, nodeId) ;
             return found;
         });
         return found;
@@ -84,7 +85,7 @@ export class SkillTreesStore {
         return found;
     }
 
-    public getRunes(tree: ISkillsTreeNode) {
+    private getRunes(tree: ISkillsTreeNode) {
         let runes: RuneModels.IRune[] = [];
         if (tree.attachedRune) {
             runes.push(tree.attachedRune);
@@ -97,11 +98,11 @@ export class SkillTreesStore {
         return runes;
     }
 
-    private getLenth(tree: ISkillsTreeNode) {
+    private getLength(tree: ISkillsTreeNode) {
         let count = 1;
         if (tree.children) {
             tree.children.forEach((child) => {
-                count += this.getLenth(child);
+                count += this.getLength(child);
             })
         }
         return count;
