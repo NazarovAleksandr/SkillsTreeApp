@@ -9,3 +9,4 @@ script:
   - npm run build
 on:
   branch: master
+exclude: /(node_modules|dist)/,
