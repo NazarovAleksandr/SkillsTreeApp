@@ -7,7 +7,7 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint . --fix",
     "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build",
+    "predeploy": "webpack --config webpack.gh-pages.js",
     "test": "jest"
   },
   "dependencies": {
