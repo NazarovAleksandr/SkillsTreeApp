@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import RuneData from '../../src/components/runes/runeData';
-import { IRune, Rarity, RuneTypes, RunePropertyTypes } from '../../src/components/runes/models';
+import RuneData from '../../../src/components/runes/runeData';
+import { IRune, Rarity, RuneTypes, RunePropertyTypes } from '../../../src/components/runes/models';
 
 describe('RuneData', () => {
     test('Renders positive props', () => {

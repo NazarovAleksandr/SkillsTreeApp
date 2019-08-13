@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import RunesList from '../../src/components/runes/runesList';
-import { IRune, Rarity, RuneTypes, RunePropertyTypes } from '../../src/components/runes/models';
-import * as stores from '../../src/stores';
-import * as utils from '../../src/utils';
+import RunesList from '../../../src/components/runes/runesList';
+import { IRune, Rarity, RuneTypes, RunePropertyTypes } from '../../../src/components/runes/models';
+import * as stores from '../../../src/stores';
+import * as utils from '../../../src/utils';
 
 let runesStore: stores.runes.RunesStore;
 let tooltipStore: stores.tooltipState.TooltipStateStore;

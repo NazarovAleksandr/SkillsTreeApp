@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import MagicSchool from '../../src/components/magicSchools/magicSchool';
+import MagicSchool from '../../../src/components/magicSchools/magicSchool';
 
 describe('MagicSchool', () => {
     test('Renders passive display', () => {

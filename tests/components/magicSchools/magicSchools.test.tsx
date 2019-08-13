@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import MagicSchools from '../../src/components/magicSchools/magicSchools';
-import * as stores from '../../src/stores';
+import MagicSchools from '../../../src/components/magicSchools/magicSchools';
+import * as stores from '../../../src/stores';
 
 let magicSchoolsStore: stores.magicSchools.MagicSchoolsStore;
 let uiStateStore: stores.magicSchools.MagicSchoolsUIStateStore;

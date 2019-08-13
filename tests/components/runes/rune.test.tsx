@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import Rune from '../../src/components/runes/rune';
-import { IRune, Rarity, RuneTypes, RunePropertyTypes } from '../../src/components/runes/models';
+import Rune from '../../../src/components/runes/rune';
+import { IRune, Rarity, RuneTypes, RunePropertyTypes } from '../../../src/components/runes/models';
 
 let rune: IRune = {
     id: '1',
