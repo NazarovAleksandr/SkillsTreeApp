@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserSkills page Renders 1`] = `
+<div
+  className="user-skills-page"
+>
+  <MagicSchools
+    schoolsStore={
+      MagicSchoolsStore {
+        "schools": Array [],
+      }
+    }
+    uiStateStore={
+      MagicSchoolsUIStateStore {
+        "inEditionState": undefined,
+        "selectedSchoolId": undefined,
+      }
+    }
+  />
+  <DragDropContext
+    onDragEnd={[Function]}
+    onDragStart={[Function]}
+  >
+    <SkillsTree
+      treeStore={
+        SkillTreesStore {
+          "schoolIdToTree": Object {},
+          "trees": Array [],
+        }
+      }
+    />
+    <RunesList
+      runesStore={
+        RunesStore {
+          "propTypes": Array [
+            "Evade",
+            "Health",
+            "Mana",
+            "Power",
+            "Shield",
+          ],
+          "runeRarities": Array [
+            "Common",
+            "Rare",
+            "Unique",
+          ],
+          "runeTypes": Array [
+            "Attack",
+            "Defence",
+            "Heal",
+            "Magic",
+            "Utility",
+          ],
+          "runes": Array [],
+        }
+      }
+      usedRunes={Set {}}
+    />
+  </DragDropContext>
+</div>
+`;

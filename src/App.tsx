@@ -3,11 +3,15 @@ import './App.scss';
 import './common.scss';
 import { observer } from "mobx-react";
 import AboutPage from './pages/about';
-import UserSkillsPage from './pages/userSkills';
+import { UserSkillsPage } from './pages/userSkills';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import { TooltipContext } from './contexts/tooltip';
 import * as stores from './stores';
 import { Tooltip } from './components/tooltip/tooltip';
+import * as schoolsService from './services/schoolsService';
+import * as treeService from './services/skillTreesService';
+import * as runeService from './services/runeService';
+import { observe } from 'mobx';
 
 const tooltipStateStore = new stores.tooltipState.TooltipStateStore();
 let basename = process.env.BASENAME || '/'
@@ -17,6 +21,45 @@ window.addEventListener('scroll', () => {
 }, {
     capture: true,
     passive: true
+});
+
+const magicSchoolsStore = new stores.magicSchools.MagicSchoolsStore();
+const skillTreesStore = new stores.skillTrees.SkillTreesStore();
+const uiStateStore = new stores.magicSchools.MagicSchoolsUIStateStore();
+const runesStore = new stores.runes.RunesStore();
+
+let schools = schoolsService.loadSchools();
+let treeData = treeService.loadTreesData();
+let runes = runeService.loadRunes();
+
+schools.forEach((school) => {
+    magicSchoolsStore.addSchool(school);
+});
+treeData.forEach((item) => {
+    skillTreesStore.addTree(item.parentSchoolId, item.tree);
+});
+runes.forEach((rune) => {
+    runesStore.addRune(rune);
+});
+
+let tree = skillTreesStore.getTree('1');
+tree.children[0].children.forEach((child, idx) => {
+    child.attachedRune = runesStore.getRunes()[idx];
+});
+
+for (let i = 0; i < 22; i++) {
+    runesStore.addRune(runesStore.generateRune());
+}
+
+observe(magicSchoolsStore.getSchools(), (changes) => {
+    if (changes.type === 'splice') {
+        changes.added.forEach((addedSchool) => {
+            skillTreesStore.createTree(addedSchool.id, true);
+        });
+        changes.removed.forEach((removedSchool) => {
+            skillTreesStore.removeTree(removedSchool.id);
+        });
+    }
 });
 
 const App = () => {
@@ -30,7 +73,13 @@ const App = () => {
                             <NavLink to="/skills" activeClassName='active'>Skills</NavLink>
                         </div>
                         <div className="pages">
-                            <Route path="/skills" component={UserSkillsPage} />
+                            <Route path="/skills" render={(props) =>
+                                <UserSkillsPage {...props} magicSchoolsStore={magicSchoolsStore}
+                                    skillTreesStore={skillTreesStore}
+                                    uiStateStore={uiStateStore}
+                                    runesStore={runesStore}>
+                                </UserSkillsPage>
+                            }/>
                             <Route exact path="/" component={AboutPage} />
                         </div>
                     </div>
