@@ -1,21 +1,42 @@
 import * as React from 'react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import MagicSchool from '../../src/components/magicSchools/magicSchool';
 
-import Rune from '../../src/components/runes/rune';
-import { IRune, Rarity, RuneTypes } from '../../src/components/runes/models';
+describe('MagicSchool', () => {
+    test('Renders passive display', () => {
+        let school = {name: 'testSchool', id: '1'};
+        const component = shallow(<MagicSchool school={school}></MagicSchool>);
 
-describe('<MagicSchool />', () => {
-  test('renders the component', () => {
-    const rune: IRune = {
-      id: '1',
-      rarity: Rarity.common,
-      type: RuneTypes.attack,
-      image: 'url',
-      properties: []
-    };
-    const component = shallow(<Rune isUsed={false} rune={rune}></Rune>);
+        expect(component).toMatchSnapshot('passiveDisplay');
+    });
+    test('Renders active school', () => {
+        let school = {name: 'testSchool', id: '1'};
+        const component = shallow(<MagicSchool school={school} isActive={true}></MagicSchool>);
 
-    expect(component).toMatchSnapshot();
-  });
+        expect(component).toMatchSnapshot('activeDisplay');
+    });
+    test('Renders is edition state', () => {
+        let school = {name: 'testSchool', id: '1'};
+        const component = shallow(<MagicSchool school={school} inEdition={true}></MagicSchool>);
+
+        expect(component).toMatchSnapshot('inEditionState');
+    });
+    test('Calls select callback on click', () => {
+        let school = {name: 'testSchool', id: '1'};
+        const fn = jest.fn()
+
+        const component = shallow(<MagicSchool school={school} inEdition={true} onSelect={fn}></MagicSchool>);
+        component.find('.school').simulate('click');
+
+        expect(fn).toBeCalled();
+    });
+    test('Calls callback on input bluring', () => {
+        let school = {name: 'testSchool', id: '1'};
+        const fn = jest.fn()
+
+        const component = shallow(<MagicSchool school={school} inEdition={true} onEditionEnd={fn}></MagicSchool>);
+        component.find('.input').simulate('blur');
+
+        expect(fn).toBeCalled();
+    });
 });

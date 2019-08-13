@@ -1,12 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MagicSchool /> renders the component 1`] = `
+exports[`MagicSchool Renders active school: activeDisplay 1`] = `
 <div
-  className="rune"
+  className="school active"
 >
-  <img
-    className="rune-image"
-    src="url"
-  />
+  <span
+    className="title"
+    title="testSchool"
+  >
+    testSchool
+  </span>
+</div>
+`;
+
+exports[`MagicSchool Renders is edition state: inEditionState 1`] = `
+<div
+  className="school"
+>
+  <div
+    className="active-container"
+  >
+    <input
+      autoFocus={true}
+      className="input"
+      defaultValue="testSchool"
+    />
+  </div>
+</div>
+`;
+
+exports[`MagicSchool Renders passive display: passiveDisplay 1`] = `
+<div
+  className="school"
+>
+  <span
+    className="title"
+    title="testSchool"
+  >
+    testSchool
+  </span>
 </div>
 `;

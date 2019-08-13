@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MagicSchools Makes school editable: One school is in edition state 1`] = `
+<div
+  className="schools-block"
+>
+  <div
+    className="block-title"
+  >
+    <span
+      className="title"
+    >
+      Magic Pages
+    </span>
+  </div>
+  <div
+    className="schools-list"
+  >
+    <MagicSchool
+      inEdition={true}
+      isActive={true}
+      key="0"
+      onEditionEnd={[Function]}
+      onSelect={[Function]}
+      school={
+        Object {
+          "id": "1",
+          "name": "1",
+        }
+      }
+    />
+  </div>
+  <div
+    className="actions-panel"
+  >
+    <div
+      className="action"
+      onClick={[Function]}
+    >
+      Add
+    </div>
+    <div
+      className="action"
+      onClick={[Function]}
+    >
+      Edit
+    </div>
+    <div
+      className="action"
+      onClick={[Function]}
+    >
+      Delete
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MagicSchools Renders 1`] = `
+<div
+  className="schools-block"
+>
+  <div
+    className="block-title"
+  >
+    <span
+      className="title"
+    >
+      Magic Pages
+    </span>
+  </div>
+  <div
+    className="schools-list"
+  >
+    <MagicSchool
+      isActive={false}
+      key="0"
+      onEditionEnd={[Function]}
+      onSelect={[Function]}
+      school={
+        Object {
+          "id": "1",
+          "name": "1",
+        }
+      }
+    />
+    <MagicSchool
+      isActive={false}
+      key="1"
+      onEditionEnd={[Function]}
+      onSelect={[Function]}
+      school={
+        Object {
+          "id": "2",
+          "name": "2",
+        }
+      }
+    />
+  </div>
+  <div
+    className="actions-panel"
+  >
+    <div
+      className="action"
+      onClick={[Function]}
+    >
+      Add
+    </div>
+    <div
+      className="action disabled"
+      onClick={[Function]}
+    >
+      Edit
+    </div>
+    <div
+      className="action disabled"
+      onClick={[Function]}
+    >
+      Delete
+    </div>
+  </div>
+</div>
+`;
