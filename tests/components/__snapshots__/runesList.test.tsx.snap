@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RunesList Renders: emptyList 1`] = `
+<div
+  className="runes-block"
+>
+  <div
+    className="block-title"
+  >
+    <span
+      className="title"
+    >
+      Runes
+    </span>
+    <div
+      className="action"
+      onClick={[Function]}
+    >
+      Generate new Rune
+    </div>
+  </div>
+  <div
+    className="runes-list"
+  />
+</div>
+`;
+
+exports[`RunesList Renders: emptyList 2`] = `
+<div
+  className="runes-block"
+>
+  <div
+    className="block-title"
+  >
+    <span
+      className="title"
+    >
+      Runes
+    </span>
+    <div
+      className="action"
+      onClick={[Function]}
+    >
+      Generate new Rune
+    </div>
+  </div>
+  <div
+    className="runes-list"
+  />
+</div>
+`;
+
+exports[`RunesList Renders: nonEmptyList 1`] = `
+<div
+  className="runes-block"
+>
+  <div
+    className="block-title"
+  >
+    <span
+      className="title"
+    >
+      Runes
+    </span>
+    <div
+      className="action"
+      onClick={[Function]}
+    >
+      Generate new Rune
+    </div>
+  </div>
+  <div
+    className="runes-list"
+  >
+    <div
+      className="rune-socket common"
+      key="0"
+    >
+      <Component
+        draggableId="1"
+        droppableId="1"
+        index={0}
+      >
+        <ContextConsumer>
+          <Component />
+        </ContextConsumer>
+      </Component>
+    </div>
+  </div>
+</div>
+`;

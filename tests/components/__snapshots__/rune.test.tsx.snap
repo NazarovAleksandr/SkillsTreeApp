@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rune Renders not used rune: notUsedRune 1`] = `
+<div
+  className="rune"
+>
+  <img
+    className="rune-image"
+    src="url"
+  />
+</div>
+`;
+
+exports[`Rune Renders not used rune: usedRune 1`] = `
+<div
+  className="rune used"
+>
+  <img
+    className="rune-image"
+    src="url"
+  />
+</div>
+`;

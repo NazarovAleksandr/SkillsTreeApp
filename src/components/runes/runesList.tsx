@@ -50,7 +50,7 @@ export class RunesList extends React.PureComponent<Models.IRunesListProps> {
         this.props.runesStore.addRune(newRune);
     }
 
-    private onMouseOver(e: React.MouseEvent<HTMLSpanElement, MouseEvent>, tooltipStore: TooltipStateStore, rune: Models.IRune) {
+    public onMouseOver(e: React.MouseEvent<HTMLSpanElement, MouseEvent>, tooltipStore: TooltipStateStore, rune: Models.IRune) {
         if (document.body.classList.contains(utils.constants.dragInProgress)) {
             return;
         }

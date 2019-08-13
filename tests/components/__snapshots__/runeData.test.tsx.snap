@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RuneData Renders negative props: negativeProps 1`] = `
+<div
+  className="rune-data-container"
+>
+  <div
+    className="main-data"
+  >
+    <div>
+      <span
+        className="title"
+      >
+        Type:
+      </span>
+       
+      Attack
+    </div>
+    <div>
+      <span
+        className="title"
+      >
+        Rarity:
+      </span>
+       
+      <span
+        className="rune-rarity common"
+      >
+        Common
+      </span>
+    </div>
+  </div>
+  <div
+    key="0"
+  >
+    <span
+      className="title"
+    >
+      Evade
+      :
+    </span>
+     
+    <span
+      className="property-value negative"
+    >
+      -10
+    </span>
+  </div>
+</div>
+`;
+
+exports[`RuneData Renders positive props: positiveProps 1`] = `
+<div
+  className="rune-data-container"
+>
+  <div
+    className="main-data"
+  >
+    <div>
+      <span
+        className="title"
+      >
+        Type:
+      </span>
+       
+      Attack
+    </div>
+    <div>
+      <span
+        className="title"
+      >
+        Rarity:
+      </span>
+       
+      <span
+        className="rune-rarity common"
+      >
+        Common
+      </span>
+    </div>
+  </div>
+  <div
+    key="0"
+  >
+    <span
+      className="title"
+    >
+      Evade
+      :
+    </span>
+     
+    <span
+      className="property-value positive"
+    >
+      +10
+    </span>
+  </div>
+</div>
+`;
+
+exports[`RuneData Renders rare rarity: rareRarity 1`] = `
+<div
+  className="rune-data-container"
+>
+  <div
+    className="main-data"
+  >
+    <div>
+      <span
+        className="title"
+      >
+        Type:
+      </span>
+       
+      Attack
+    </div>
+    <div>
+      <span
+        className="title"
+      >
+        Rarity:
+      </span>
+       
+      <span
+        className="rune-rarity rare"
+      >
+        Rare
+      </span>
+    </div>
+  </div>
+  <div
+    key="0"
+  >
+    <span
+      className="title"
+    >
+      Evade
+      :
+    </span>
+     
+    <span
+      className="property-value negative"
+    >
+      -10
+    </span>
+  </div>
+</div>
+`;
+
+exports[`RuneData Renders unique rarity: uniqueRarity 1`] = `
+<div
+  className="rune-data-container"
+>
+  <div
+    className="main-data"
+  >
+    <div>
+      <span
+        className="title"
+      >
+        Type:
+      </span>
+       
+      Attack
+    </div>
+    <div>
+      <span
+        className="title"
+      >
+        Rarity:
+      </span>
+       
+      <span
+        className="rune-rarity unique"
+      >
+        Unique
+      </span>
+    </div>
+  </div>
+  <div
+    key="0"
+  >
+    <span
+      className="title"
+    >
+      Evade
+      :
+    </span>
+     
+    <span
+      className="property-value negative"
+    >
+      -10
+    </span>
+  </div>
+</div>
+`;
