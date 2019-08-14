@@ -7,5 +7,5 @@ export {
     randomizer,
     uids,
     constants,
-    images
-}
+    images,
+};

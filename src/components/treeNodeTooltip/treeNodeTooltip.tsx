@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
 import './styles.scss';
 import * as Models from './models';
 import RuneData from '../runes/runeData';
 
 const TreeNodeTooltip = (props: Models.ITreeNodeTooltip) => {
-    let { onAdd, onRemove, node } = props;
-    let runeInfo = node && node.attachedRune ? 
-        <div className="rune-info">
-            <RuneData rune={node.attachedRune}></RuneData>
-        </div> :
-        <div>No runes attached</div>
+    const { onAdd, onRemove, node } = props;
+    const runeInfo = node && node.attachedRune
+        ? (
+            <div className="rune-info">
+                <RuneData rune={node.attachedRune} />
+            </div>
+        )
+        : <div>No runes attached</div>;
 
-    let disableableClassName = `action${node.isRoot ? ' disabled' : ''}`;
+    const disableableClassName = `action${node.isRoot ? ' disabled' : ''}`;
 
     return (
         <div className="tree-node-tooltip">
@@ -25,6 +27,6 @@ const TreeNodeTooltip = (props: Models.ITreeNodeTooltip) => {
             </div>
         </div>
     );
-}
+};
 
 export default observer(TreeNodeTooltip);

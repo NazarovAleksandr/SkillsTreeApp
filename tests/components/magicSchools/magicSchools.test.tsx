@@ -13,17 +13,17 @@ beforeEach(() => {
 
 describe('MagicSchools', () => {
     test('Renders', () => {
-        let school = {id: '1', name: '1'};
-        let school2 = {id: '2', name: '2'};
+        const school = { id: '1', name: '1' };
+        const school2 = { id: '2', name: '2' };
         magicSchoolsStore.addSchool(school);
         magicSchoolsStore.addSchool(school2);
 
-        const component = shallow(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} ></MagicSchools>);
+        const component = shallow(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} />);
 
         expect(component).toMatchSnapshot();
     });
     test('Adds new school', () => {
-        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} ></MagicSchools>);
+        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} />);
 
         component.instance().addNewItem();
 
@@ -31,8 +31,8 @@ describe('MagicSchools', () => {
         expect(uiStateStore.isInEditionState()).toEqual(true);
     });
     test('Removes school', () => {
-        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} ></MagicSchools>);
-        let school = {id: '1', name: '1'};
+        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} />);
+        const school = { id: '1', name: '1' };
         magicSchoolsStore.addSchool(school);
 
         uiStateStore.setActiveSchool('1');
@@ -42,8 +42,8 @@ describe('MagicSchools', () => {
         expect(uiStateStore.getSelectedSchoolId()).toBeFalsy();
     });
     test('Makes school editable', () => {
-        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} ></MagicSchools>);
-        let school = {id: '1', name: '1'};
+        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} />);
+        const school = { id: '1', name: '1' };
         magicSchoolsStore.addSchool(school);
 
         uiStateStore.setActiveSchool('1');
@@ -53,9 +53,9 @@ describe('MagicSchools', () => {
         expect(component).toMatchSnapshot('One school is in edition state');
     });
     test('Starts edition on select', () => {
-        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} ></MagicSchools>);
-        let school = {id: '1', name: '1'};
-        
+        const component = shallow<MagicSchools>(<MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} />);
+        const school = { id: '1', name: '1' };
+
         component.instance().onEditionEnd(school, 'new');
 
         expect(school.name).toEqual('new');

@@ -14,8 +14,8 @@ export class Socket extends React.PureComponent<SocketProps> {
     }
 
     public render() {
-        let { children, rune, isRuneOver } = this.props;
-        let socketClassName = `rune-socket ${isRuneOver ? 'drop-allowed' : ''} ${rune ? rune.rarity.toLowerCase() + '-splash' : ''}`;
+        const { children, rune, isRuneOver } = this.props;
+        const socketClassName = `rune-socket ${isRuneOver ? 'drop-allowed' : ''} ${rune ? `${rune.rarity.toLowerCase()}-splash` : ''}`;
         return (
             <span className={socketClassName} ref={this.socketRef}>
                 {children}

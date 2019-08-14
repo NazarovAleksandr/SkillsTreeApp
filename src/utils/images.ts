@@ -57,9 +57,9 @@ import * as sorc11 from '../assets/images/sorcery/11.png';
 import * as sorc12 from '../assets/images/sorcery/12.png';
 
 export const images: {[key: string]: string[]} = {
-    'domination': [dom1, dom2, dom3, dom4, dom5, dom6, dom7, dom8, dom9, dom10],
-    'inspiration': [insp1, insp2, insp3, insp4, insp5, insp6, insp7, insp8, insp9],
-    'precision': [prec1, prec2, prec3, prec4, prec5, prec6, prec7, prec8, prec9, prec10, prec11, prec12, prec13],
-    'resolve': [res1, res2, res3, res4, res5, res6, res7, res8, res9],
-    'sorcery': [sorc1, sorc2, sorc3, sorc4, sorc5, sorc6, sorc7, sorc8, sorc9, sorc10, sorc11, sorc12]
-}
+    domination: [dom1, dom2, dom3, dom4, dom5, dom6, dom7, dom8, dom9, dom10],
+    inspiration: [insp1, insp2, insp3, insp4, insp5, insp6, insp7, insp8, insp9],
+    precision: [prec1, prec2, prec3, prec4, prec5, prec6, prec7, prec8, prec9, prec10, prec11, prec12, prec13],
+    resolve: [res1, res2, res3, res4, res5, res6, res7, res8, res9],
+    sorcery: [sorc1, sorc2, sorc3, sorc4, sorc5, sorc6, sorc7, sorc8, sorc9, sorc10, sorc11, sorc12],
+};

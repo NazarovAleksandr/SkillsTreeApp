@@ -1,9 +1,9 @@
-import {RunesStore} from '../../src/stores/runes';
+import { RunesStore } from '../../src/stores/runes';
 
 describe('Runes store', () => {
     test('Generates runes', () => {
-        let store = new RunesStore();
-        let generated = store.generateRune();
+        const store = new RunesStore();
+        const generated = store.generateRune();
 
         expect(generated).toBeDefined();
         expect(generated.id).toBeDefined();
@@ -14,24 +14,24 @@ describe('Runes store', () => {
         expect(generated.properties.length).toBeGreaterThan(0);
     });
     test('Stores rune', () => {
-        let store = new RunesStore();
-        let generated = store.generateRune();
+        const store = new RunesStore();
+        const generated = store.generateRune();
 
         expect(store.getRunes()).toHaveLength(0);
         store.addRune(generated);
         expect(store.getRunes()).toHaveLength(1);
     });
     test('Allows rune getting', () => {
-        let store = new RunesStore();
-        let generated = store.generateRune();
+        const store = new RunesStore();
+        const generated = store.generateRune();
         store.addRune(generated);
 
         expect(store.getRune(generated.id)).toEqual(generated);
     });
     test('Return all runes', () => {
-        let store = new RunesStore();
-        let firstRune = store.generateRune();
-        let secondRune = store.generateRune();
+        const store = new RunesStore();
+        const firstRune = store.generateRune();
+        const secondRune = store.generateRune();
         store.addRune(firstRune);
         store.addRune(secondRune);
 

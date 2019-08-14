@@ -1,14 +1,16 @@
 import * as React from 'react';
+import { observer } from 'mobx-react';
 import * as Models from './models';
-import { observer } from "mobx-react";
 
 const MagicSchool = (props: Models.IMagicSchoolProps) => {
-    let {school, inEdition, isActive, onEditionEnd, onSelect} = props;
+    const {
+        school, inEdition, isActive, onEditionEnd, onSelect,
+    } = props;
 
-    let activeDisplay = <div className="active-container"><input className="input" defaultValue={school.name} autoFocus={true} onBlur={onEditionEnd}/></div>;
-    let passiveDisplay = <span className="title" title={school.name}>{school.name}</span>
-    
-    let className = `school${isActive ? ' active' : ''}`;
+    const activeDisplay = <div className="active-container"><input className="input" defaultValue={school.name} autoFocus onBlur={onEditionEnd} /></div>;
+    const passiveDisplay = <span className="title" title={school.name}>{school.name}</span>;
+
+    const className = `school${isActive ? ' active' : ''}`;
     return (
         <div className={className} onClick={onSelect}>
             {
@@ -16,6 +18,6 @@ const MagicSchool = (props: Models.IMagicSchoolProps) => {
             }
         </div>
     );
-}
+};
 
 export default observer(MagicSchool);

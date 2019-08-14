@@ -14,34 +14,34 @@ module.exports = {
             {
                 test: /\.(tsx|ts)$/,
                 exclude: /(node_modules)/,
-                loader: 'ts-loader'
+                loader: 'ts-loader',
             },
             {
                 test: /\.(scss)$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i, 
-                loader: "file-loader?name=[path][name].[ext]"
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: 'file-loader?name=[path][name].[ext]',
             },
             {
                 test: /\.html$/,
                 use: [{
                     loader: 'html-loader',
-                }]
-            }
+                }],
+            },
         ],
     },
     resolve: { extensions: ['*', '.js', '.jsx', '.tsx', '.ts'] },
     output: {
         path: path.resolve(__dirname, 'dist/'),
         publicPath: '',
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
     devServer: {
         contentBase: path.join(__dirname, ''),
         port: 3000,
         publicPath: 'http://localhost:3000/',
-        historyApiFallback: true
-    }
+        historyApiFallback: true,
+    },
 };

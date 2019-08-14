@@ -7,5 +7,5 @@ export {
     magicSchools,
     runes,
     skillTrees,
-    tooltipState
-}
+    tooltipState,
+};

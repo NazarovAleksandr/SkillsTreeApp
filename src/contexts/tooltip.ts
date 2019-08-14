@@ -1,4 +1,5 @@
-import React = require("react");
-import { TooltipStateStore } from "../stores/tooltipState";
+import { TooltipStateStore } from '../stores/tooltipState';
+
+import React = require('react');
 
 export const TooltipContext = React.createContext<TooltipStateStore | undefined>(undefined);

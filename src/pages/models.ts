@@ -1,4 +1,4 @@
-import * as stores from "../stores";
+import * as stores from '../stores';
 
 export interface IUserSkillsPageProps {
     magicSchoolsStore: stores.magicSchools.MagicSchoolsStore;

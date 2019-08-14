@@ -1,5 +1,5 @@
-import { RunesStore } from '../../stores/runes';
 import { ReactNode } from 'react';
+import { RunesStore } from '../../stores/runes';
 
 export interface IProperty {
     name: RunePropertyTypes;

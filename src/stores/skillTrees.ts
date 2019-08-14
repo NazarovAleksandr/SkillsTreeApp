@@ -1,27 +1,30 @@
-import { observable, action, computed, IObservableArray } from "mobx";
+import {
+    observable, action, computed, IObservableArray,
+} from 'mobx';
 import * as RuneModels from '../components/runes/models';
 import * as utils from '../utils';
-import { ISkillsTreeNode } from "../components/skillsTree/models";
+import { ISkillsTreeNode } from '../components/skillsTree/models';
 
 
 export class SkillTreesStore {
 	@observable private trees: IObservableArray<ISkillsTreeNode>;
+
 	@observable private schoolIdToTree: {[key: string]: ISkillsTreeNode}
 
-    constructor() {
-        this.trees =  observable([]);
-        this.schoolIdToTree = {};
-    }
+	constructor() {
+	    this.trees = observable([]);
+	    this.schoolIdToTree = {};
+	}
 
     @action.bound
-    public removeTree(schoolId: string) {
-        let treeToRemove = this.schoolIdToTree[schoolId];
-        let idx = this.trees.findIndex((tree) => tree === treeToRemove);
-        if (idx > -1) {
-            this.trees.splice(idx, 1);
-            this.schoolIdToTree[schoolId] = undefined;
-        }
-    }
+	public removeTree(schoolId: string) {
+	    const treeToRemove = this.schoolIdToTree[schoolId];
+	    const idx = this.trees.findIndex((tree) => tree === treeToRemove);
+	    if (idx > -1) {
+	        this.trees.splice(idx, 1);
+	        this.schoolIdToTree[schoolId] = undefined;
+	    }
+	}
 
     @action.bound
     public addTree(schoolId: string, tree: ISkillsTreeNode) {
@@ -30,8 +33,8 @@ export class SkillTreesStore {
     }
 
     @action.bound
-    public createTree(schoolId: string, isRoot: boolean = false) {
-        let newTree: ISkillsTreeNode = {id: utils.uids.getUID()};
+    public createTree(schoolId: string, isRoot = false) {
+        const newTree: ISkillsTreeNode = { id: utils.uids.getUID() };
         if (isRoot) {
             newTree.isRoot = true;
         }
@@ -65,7 +68,7 @@ export class SkillTreesStore {
     public getNode(nodeId: string): ISkillsTreeNode {
         let found;
         this.trees.find((node) => {
-            found = this.findNode(node, nodeId) ;
+            found = this.findNode(node, nodeId);
             return found;
         });
         return found;
@@ -80,7 +83,7 @@ export class SkillTreesStore {
             node.children.find((child) => {
                 found = this.findNode(child, id);
                 return found;
-            })
+            });
         }
         return found;
     }
@@ -93,7 +96,7 @@ export class SkillTreesStore {
         if (tree.children) {
             tree.children.forEach((child) => {
                 runes = [...runes, ...this.getRunes(child)];
-            })
+            });
         }
         return runes;
     }
@@ -103,7 +106,7 @@ export class SkillTreesStore {
         if (tree.children) {
             tree.children.forEach((child) => {
                 count += this.getLength(child);
-            })
+            });
         }
         return count;
     }

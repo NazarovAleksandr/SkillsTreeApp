@@ -1,4 +1,4 @@
-import { IRune } from "../runes/models";
+import { IRune } from '../runes/models';
 
 export interface SocketProps {
     rune: IRune;

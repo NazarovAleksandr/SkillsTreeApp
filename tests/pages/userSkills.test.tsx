@@ -1,8 +1,9 @@
-import {UserSkillsPage} from '../../src/pages/userSkills';
-import React = require('react');
 import { shallow } from 'enzyme';
+import { UserSkillsPage } from '../../src/pages/userSkills';
 import * as stores from '../../src/stores';
 import * as utils from '../../src/utils';
+
+import React = require('react');
 
 let magicSchoolsStore: stores.magicSchools.MagicSchoolsStore;
 let skillTreesStore: stores.skillTrees.SkillTreesStore;
@@ -23,12 +24,13 @@ describe('UserSkills page', () => {
             magicSchoolsStore={magicSchoolsStore}
             skillTreesStore={skillTreesStore}
             uiStateStore={uiStateStore}
-            runesStore={runesStore}></UserSkillsPage>);
+            runesStore={runesStore}
+        />);
 
         expect(component).toMatchSnapshot();
     });
     test('Sets active school', () => {
-        let school = magicSchoolsStore.generateSchool();
+        const school = magicSchoolsStore.generateSchool();
         magicSchoolsStore.addSchool(school);
         uiStateStore.setActiveSchool(school.id);
 
@@ -36,9 +38,10 @@ describe('UserSkills page', () => {
             magicSchoolsStore={magicSchoolsStore}
             skillTreesStore={skillTreesStore}
             uiStateStore={uiStateStore}
-            runesStore={runesStore}></UserSkillsPage>);
+            runesStore={runesStore}
+        />);
 
-        let activeSchool = component.instance().activeSchool;
+        const { activeSchool } = component.instance();
 
         expect(activeSchool).toEqual(school);
     });
@@ -47,7 +50,8 @@ describe('UserSkills page', () => {
             magicSchoolsStore={magicSchoolsStore}
             skillTreesStore={skillTreesStore}
             uiStateStore={uiStateStore}
-            runesStore={runesStore}></UserSkillsPage>);
+            runesStore={runesStore}
+        />);
 
         component.instance().onDragStart();
         expect(document.body.classList.contains(utils.constants.dragInProgress)).toEqual(true);
@@ -57,7 +61,8 @@ describe('UserSkills page', () => {
             magicSchoolsStore={magicSchoolsStore}
             skillTreesStore={skillTreesStore}
             uiStateStore={uiStateStore}
-            runesStore={runesStore}></UserSkillsPage>);
+            runesStore={runesStore}
+        />);
 
         component.instance().onRuneDropped({
             combine: undefined,
@@ -66,7 +71,7 @@ describe('UserSkills page', () => {
             mode: undefined,
             reason: undefined,
             source: undefined,
-            type: undefined
+            type: undefined,
         });
         expect(document.body.classList.contains(utils.constants.dragInProgress)).toEqual(false);
     });
@@ -75,25 +80,26 @@ describe('UserSkills page', () => {
             magicSchoolsStore={magicSchoolsStore}
             skillTreesStore={skillTreesStore}
             uiStateStore={uiStateStore}
-            runesStore={runesStore}></UserSkillsPage>);
-        
-        let rune = runesStore.generateRune();
+            runesStore={runesStore}
+        />);
+
+        const rune = runesStore.generateRune();
         runesStore.addRune(rune);
-        let tree = {
-            id: '1'
+        const tree = {
+            id: '1',
         };
         skillTreesStore.addTree('1', tree);
 
         component.instance().onRuneDropped({
             combine: undefined,
-            destination: {droppableId: '1', index: 1},
+            destination: { droppableId: '1', index: 1 },
             draggableId: undefined,
             mode: undefined,
             reason: undefined,
-            source: {droppableId: rune.id, index: 1},
-            type: undefined
+            source: { droppableId: rune.id, index: 1 },
+            type: undefined,
         });
-        
+
         expect(skillTreesStore.getNode('1').attachedRune).toEqual(rune);
     });
 });

@@ -1,15 +1,20 @@
-import { observable, action } from "mobx";
+import { observable, action } from 'mobx';
 import * as Models from '../components/tooltip/models';
 
 export class TooltipStateStore {
-	@observable private visible: boolean = false;
+    @observable private visible = false;
+
     @observable private position?: Models.TooltipPositions;
+
     @observable private content?: React.ReactNode;
+
     @observable private node?: HTMLElement;
+
     @observable private outCallback?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 
-	@action.bound
-	public show(position: Models.TooltipPositions, content: React.ReactNode, hostNode: HTMLElement, mouseOutCallback?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void) {
+    @action.bound
+    public show(position: Models.TooltipPositions, content: React.ReactNode, hostNode: HTMLElement,
+        mouseOutCallback?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void) {
         this.visible = true;
         this.position = position;
         this.content = content;

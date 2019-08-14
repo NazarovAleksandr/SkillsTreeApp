@@ -1,15 +1,14 @@
-import './userSkills.scss'
+import './userSkills.scss';
 import * as React from 'react';
-import { observer } from "mobx-react";
-import { observable } from "mobx";
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import MagicSchools from '../components/magicSchools/magicSchools';
 import SkillsTree from '../components/skillsTree/skillsTree';
 import RunesList from '../components/runes/runesList';
 import * as Models from '../components/magicSchools/models';
-import {IUserSkillsPageProps} from './models';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import * as utils from './../utils';
-
+import { IUserSkillsPageProps } from './models';
+import * as utils from '../utils';
 
 
 @observer
@@ -28,9 +27,9 @@ export class UserSkillsPage extends React.PureComponent<IUserSkillsPageProps> {
     public onRuneDropped = (result: DropResult) => {
         const { source, destination } = result;
         if (source && destination) {
-            let rune = this.props.runesStore.getRune(source.droppableId);
-            let node = this.props.skillTreesStore.getNode(destination.droppableId);
-    
+            const rune = this.props.runesStore.getRune(source.droppableId);
+            const node = this.props.skillTreesStore.getNode(destination.droppableId);
+
             if (rune && node) {
                 node.attachedRune = rune;
                 navigator.vibrate && navigator.vibrate([100]);
@@ -45,16 +44,17 @@ export class UserSkillsPage extends React.PureComponent<IUserSkillsPageProps> {
     }
 
     public render() {
-        let {magicSchoolsStore, uiStateStore, skillTreesStore, runesStore} = this.props;
+        const {
+            magicSchoolsStore, uiStateStore, skillTreesStore, runesStore,
+        } = this.props;
         return (
             <div className="user-skills-page">
-                <MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore}></MagicSchools>
+                <MagicSchools schoolsStore={magicSchoolsStore} uiStateStore={uiStateStore} />
                 <DragDropContext onDragEnd={this.onRuneDropped} onDragStart={this.onDragStart}>
-                    <SkillsTree relatedSchoolId={uiStateStore.getSelectedSchoolId()} treeStore={skillTreesStore}></SkillsTree>
-                    <RunesList runesStore={runesStore} usedRunes={skillTreesStore.attachedRunes}></RunesList>
+                    <SkillsTree relatedSchoolId={uiStateStore.getSelectedSchoolId()} treeStore={skillTreesStore} />
+                    <RunesList runesStore={runesStore} usedRunes={skillTreesStore.attachedRunes} />
                 </DragDropContext>
             </div>
         );
-        
     }
 }

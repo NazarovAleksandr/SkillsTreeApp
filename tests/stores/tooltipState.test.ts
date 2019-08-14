@@ -1,11 +1,11 @@
-import {TooltipStateStore} from '../../src/stores/tooltipState';
+import { TooltipStateStore } from '../../src/stores/tooltipState';
 
 describe('TooltipState store', () => {
     test('Sets observable properies', () => {
-        let store = new TooltipStateStore();
-        let content = '123';
-        let hostNode = document.createElement('div');
-        let mouseOutMock = () => {}
+        const store = new TooltipStateStore();
+        const content = '123';
+        const hostNode = document.createElement('div');
+        const mouseOutMock = () => {};
         store.show('top', content, hostNode, mouseOutMock);
 
         expect(store.hostNode).toBe(hostNode);
@@ -15,10 +15,10 @@ describe('TooltipState store', () => {
         expect(store.tooltipPosition).toEqual('top');
     });
     test('Clears observable properies', () => {
-        let store = new TooltipStateStore();
-        let content = '123';
-        let hostNode = document.createElement('div');
-        let mouseOutMock = () => {}
+        const store = new TooltipStateStore();
+        const content = '123';
+        const hostNode = document.createElement('div');
+        const mouseOutMock = () => {};
         store.show('top', content, hostNode, mouseOutMock);
         store.hide();
 

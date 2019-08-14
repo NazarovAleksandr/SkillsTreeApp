@@ -1,11 +1,11 @@
 import * as React from 'react';
 import './styles.scss';
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 import * as Models from './models';
 import { FuncTooltip } from './funcTooltip';
-import { observable } from 'mobx';
 
-let oppositePositions = new Map<Models.TooltipPositions, Models.TooltipPositions>();
+const oppositePositions = new Map<Models.TooltipPositions, Models.TooltipPositions>();
 oppositePositions.set('bottom', 'top');
 oppositePositions.set('top', 'bottom');
 oppositePositions.set('left', 'right');
@@ -24,8 +24,8 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
 
     private invalidateTooltipPosition = () => {
         if (this.props.visible) {
-            let rect = this.props.node.getBoundingClientRect();
-            let { x, y, calculatedPosition } = this.calcTooltipCoordinates(this.props.position, rect);
+            const rect = this.props.node.getBoundingClientRect();
+            const { x, y, calculatedPosition } = this.calcTooltipCoordinates(this.props.position, rect);
             this.tooltipPosition = calculatedPosition;
 
             this.tooltipRef.current.style.transform = `translate(${x}px, ${y}px)`;
@@ -33,27 +33,27 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
     }
 
     private calcTooltipCoordinates(position: Models.TooltipPositions, rect: ClientRect | DOMRect): any {
-        let refRect = this.tooltipRef.current.firstElementChild.getBoundingClientRect();
-        
-        let calculatedPosition = position;
+        const refRect = this.tooltipRef.current.firstElementChild.getBoundingClientRect();
+
+        const calculatedPosition = position;
 
         let x = rect.left;
         let y = rect.top;
         let cuttingDetected = false;
         switch (calculatedPosition) {
-            case 'left':
-                x -= refRect.width;
-                y += rect.height / 2;
-                cuttingDetected = x < 0 || (x + refRect.width) > document.body.clientWidth;
+        case 'left':
+            x -= refRect.width;
+            y += rect.height / 2;
+            cuttingDetected = x < 0 || (x + refRect.width) > document.body.clientWidth;
             break;
-            case 'right':
-                x += rect.width;
-                y += rect.height / 2;
-                cuttingDetected = x < 0 || (x + refRect.width) > document.body.clientWidth;
+        case 'right':
+            x += rect.width;
+            y += rect.height / 2;
+            cuttingDetected = x < 0 || (x + refRect.width) > document.body.clientWidth;
             break;
-            case 'bottom':
-                x += rect.width / 2;
-                y += rect.height;
+        case 'bottom':
+            x += rect.width / 2;
+            y += rect.height;
             break;
         }
 
@@ -65,17 +65,18 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
     }
 
     public render() {
-        let tooltipContent = this.props.content;
-        let isVisible = this.props.visible;
-        let outCallback = this.props.mouseOutCallback;
+        const tooltipContent = this.props.content;
+        const isVisible = this.props.visible;
+        const outCallback = this.props.mouseOutCallback;
 
         return (
-            <FuncTooltip ref={this.tooltipRef}
+            <FuncTooltip
+                ref={this.tooltipRef}
                 isVisible={isVisible}
                 position={this.tooltipPosition}
                 tooltipContent={tooltipContent}
-                mouseOutCallback={outCallback}>
-            </FuncTooltip>
+                mouseOutCallback={outCallback}
+            />
         );
     }
 }

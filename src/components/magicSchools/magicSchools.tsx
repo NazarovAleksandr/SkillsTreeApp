@@ -1,13 +1,13 @@
 import * as React from 'react';
-import * as Models from './models';
 import { observer } from 'mobx-react';
+import * as Models from './models';
 import MagicSchool from './magicSchool';
 import './styles.scss';
 
 @observer
 export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListProps> {
     public addNewItem = () => {
-        let newSchool = this.props.schoolsStore.generateSchool();
+        const newSchool = this.props.schoolsStore.generateSchool();
         this.props.schoolsStore.addSchool(newSchool);
         this.selectItem(newSchool.id);
         this.props.uiStateStore.startSchoolEdition();
@@ -18,7 +18,7 @@ export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListPro
     }
 
     public onEditionEnd = (school: Models.IMagicSchool, newName: string) => {
-        let trimmedName = newName.trim();
+        const trimmedName = newName.trim();
         if (trimmedName) {
             this.props.uiStateStore.endSchoolEdition();
             school.name = trimmedName;
@@ -37,7 +37,7 @@ export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListPro
     }
 
     public render() {
-        let togglableButtonsClass = `action${this.props.uiStateStore.getSelectedSchoolId() ? '' : ' disabled'}`;
+        const togglableButtonsClass = `action${this.props.uiStateStore.getSelectedSchoolId() ? '' : ' disabled'}`;
 
         return (
             <div className="schools-block">
@@ -46,8 +46,8 @@ export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListPro
                 </div>
                 <div className="schools-list">
                     {this.props.schoolsStore.getSchools().map((school, idx) => {
-                        let isActive = this.props.uiStateStore.getSelectedSchoolId() === school.id;
-                        let inEdition = this.props.uiStateStore.isInEditionState() && this.props.uiStateStore.getSelectedSchoolId() === school.id;
+                        const isActive = this.props.uiStateStore.getSelectedSchoolId() === school.id;
+                        const inEdition = this.props.uiStateStore.isInEditionState() && this.props.uiStateStore.getSelectedSchoolId() === school.id;
                         return (
                             <MagicSchool
                                 key={idx}
@@ -56,7 +56,7 @@ export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListPro
                                 isActive={isActive}
                                 onEditionEnd={(e) => this.onEditionEnd(school, e.target.value)}
                                 onSelect={() => this.selectItem(school.id)}
-                            ></MagicSchool>
+                            />
                         );
                     })}
                 </div>

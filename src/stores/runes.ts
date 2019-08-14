@@ -1,23 +1,28 @@
-import { observable, action, computed, IObservableArray } from "mobx";
+import {
+    observable, action, computed, IObservableArray,
+} from 'mobx';
 import * as Models from '../components/runes/models';
 import * as utils from '../utils';
 
 export class RunesStore {
     private runes: IObservableArray<Models.IRune> = observable([]);
+
     private runeRarities: Models.Rarity[] = [Models.Rarity.common, Models.Rarity.rare, Models.Rarity.unique];
+
     private runeTypes: Models.RuneTypes[] = [
         Models.RuneTypes.attack,
         Models.RuneTypes.defence,
         Models.RuneTypes.heal,
         Models.RuneTypes.magic,
-        Models.RuneTypes.utility
+        Models.RuneTypes.utility,
     ];
+
     private propTypes: Models.RunePropertyTypes[] = [
         Models.RunePropertyTypes.Evade,
         Models.RunePropertyTypes.Hp,
         Models.RunePropertyTypes.Mp,
         Models.RunePropertyTypes.Power,
-        Models.RunePropertyTypes.Shield
+        Models.RunePropertyTypes.Shield,
     ];
 
     @action.bound
@@ -34,24 +39,24 @@ export class RunesStore {
     }
 
     public generateRune(): Models.IRune {
-        let newRarity = this.getRandomEntity(this.runeRarities);
-        let newType = this.getRandomEntity(this.runeTypes);
+        const newRarity = this.getRandomEntity(this.runeRarities);
+        const newType = this.getRandomEntity(this.runeTypes);
 
         let maxPropCount;
         let minPropCount;
         switch (newRarity) {
-            case Models.Rarity.common:
-                minPropCount = 1;
-                maxPropCount = 1;
-                break;
-            case Models.Rarity.rare:
-                minPropCount = 1;
-                maxPropCount = 2;
-                break;
-            case Models.Rarity.unique:
-                minPropCount = 2;
-                maxPropCount = 4;
-                break;
+        case Models.Rarity.common:
+            minPropCount = 1;
+            maxPropCount = 1;
+            break;
+        case Models.Rarity.rare:
+            minPropCount = 1;
+            maxPropCount = 2;
+            break;
+        case Models.Rarity.unique:
+            minPropCount = 2;
+            maxPropCount = 4;
+            break;
         }
 
         return {
@@ -59,50 +64,50 @@ export class RunesStore {
             type: newType,
             rarity: newRarity,
             properties: this.generateProperties(minPropCount, maxPropCount),
-            image: this.generateImage(newType)
-        }
+            image: this.generateImage(newType),
+        };
     }
 
     private generateImage(type: Models.RuneTypes) {
         let imgType = '';
-        switch(type) {
-            case Models.RuneTypes.attack:
-                imgType = 'precision';
+        switch (type) {
+        case Models.RuneTypes.attack:
+            imgType = 'precision';
             break;
-            case Models.RuneTypes.defence:
-                imgType = 'domination';
+        case Models.RuneTypes.defence:
+            imgType = 'domination';
             break;
-            case Models.RuneTypes.heal:
-                imgType = 'resolve';
+        case Models.RuneTypes.heal:
+            imgType = 'resolve';
             break;
-            case Models.RuneTypes.magic:
-                imgType = 'sorcery';
+        case Models.RuneTypes.magic:
+            imgType = 'sorcery';
             break;
-            case Models.RuneTypes.utility:
-                imgType = 'inspiration';
+        case Models.RuneTypes.utility:
+            imgType = 'inspiration';
             break;
         }
 
-        let typeImages = utils.images[imgType];
-        let picNum = utils.randomizer.getRandomInt(0, typeImages.length - 1);
+        const typeImages = utils.images[imgType];
+        const picNum = utils.randomizer.getRandomInt(0, typeImages.length - 1);
 
         return typeImages[picNum];
     }
 
     private generateProperties(minPropCount: number, maxPropCount: number) {
-        let newProperties: Models.IProperty[] = [];
+        const newProperties: Models.IProperty[] = [];
         for (let i = 0; i < minPropCount; i++) {
             newProperties.push({
                 name: this.getRandomEntity(this.propTypes),
-                value: utils.randomizer.getRandomInt(-100, 100)
+                value: utils.randomizer.getRandomInt(-100, 100),
             });
         }
 
-        let randAdditionalPropCount = utils.randomizer.getRandomInt(0, maxPropCount - minPropCount);
+        const randAdditionalPropCount = utils.randomizer.getRandomInt(0, maxPropCount - minPropCount);
         for (let i = 0; i < randAdditionalPropCount; i++) {
             newProperties.push({
                 name: this.getRandomEntity(this.propTypes),
-                value: utils.randomizer.getRandomInt(-100, 100)
+                value: utils.randomizer.getRandomInt(-100, 100),
             });
         }
 
@@ -110,6 +115,6 @@ export class RunesStore {
     }
 
     private getRandomEntity<T>(list: T[]) {
-        return list[utils.randomizer.getRandomInt(0, list.length - 1)]
+        return list[utils.randomizer.getRandomInt(0, list.length - 1)];
     }
 }

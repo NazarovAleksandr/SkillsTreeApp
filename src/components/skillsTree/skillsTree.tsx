@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Tree } from '../tree/tree';
-import { observer } from "mobx-react";
-import {SkillsTreeProps, ISkillsTreeNode } from './models';
-import TreeNodeTooltip from '../treeNodeTooltip/treeNodeTooltip';
+import { observer } from 'mobx-react';
 import { Droppable } from 'react-beautiful-dnd';
+import { Tree } from '../tree/tree';
+import { SkillsTreeProps, ISkillsTreeNode } from './models';
+import TreeNodeTooltip from '../treeNodeTooltip/treeNodeTooltip';
 import './styles.scss';
 import Rune from '../runes/rune';
 import { TooltipContext } from '../../contexts/tooltip';
@@ -13,23 +13,24 @@ import { runInThisContext } from 'vm';
 
 class SkillsTree extends React.PureComponent<SkillsTreeProps> {
     static contextType = TooltipContext;
+
     context!: React.ContextType<typeof TooltipContext>;
 
     public onSelectNode(node: ISkillsTreeNode) {
-        let newNode = {
-            id: utils.uids.getUID()
-        }
+        const newNode = {
+            id: utils.uids.getUID(),
+        };
         if (!node.children) {
             node.children = [];
         }
-        let length = node.children.push(newNode);;
+        const length = node.children.push(newNode);
         this.childToParent.set(node.children[length - 1], node);
         this.context.hide();
     }
 
     public removeChildFromParent(node: ISkillsTreeNode) {
-        let parent = this.childToParent.get(node);
-        let idx = parent.children.findIndex((child) => child === node);
+        const parent = this.childToParent.get(node);
+        const idx = parent.children.findIndex((child) => child === node);
         if (idx > -1) {
             parent.children.splice(idx, 1);
             if (parent.children.length === 0) {
@@ -76,9 +77,9 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
     }
 
     public onMouseOut = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-        let related = e.relatedTarget as HTMLElement;
+        const related = e.relatedTarget as HTMLElement;
         if (!related.closest('.tooltip')) {
-            this.context.hide();   
+            this.context.hide();
         }
     }
 
@@ -87,33 +88,35 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
             return;
         }
 
-        let tooltipContent = <TreeNodeTooltip node={node} onAdd={() => this.onSelectNode(node)} onRemove={() => this.onRemoveNode(node)} />;
+        const tooltipContent = <TreeNodeTooltip node={node} onAdd={() => this.onSelectNode(node)} onRemove={() => this.onRemoveNode(node)} />;
 
         this.context.show('right', tooltipContent, e.currentTarget, this.onMouseOutFromPopup);
     }
 
     private onMouseOutFromPopup = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-        let related = e.relatedTarget as HTMLElement;
+        const related = e.relatedTarget as HTMLElement;
         if (!related.closest('.tooltip') && !related.closest('.rune-wrapper')) {
-            this.context.hide();   
+            this.context.hide();
         }
     }
 
     private getDroppableSocket(node: ISkillsTreeNode) {
         return (
             <Droppable droppableId={node.id}>
-                {(provided, snapshot) => 
+                {(provided, snapshot) => (
                     <span className="socket-wrapper" ref={provided.innerRef}>
                         <Socket rune={node.attachedRune} nodeId={node.id} isRuneOver={snapshot.isDraggingOver}>
-                            <span className="rune-wrapper"
-                                onMouseOver={(e) => {this.onMouseOver(e, node)}}
-                                onClick={(e) => {this.onMouseOver(e, node)}}
-                                onMouseOut={this.onMouseOut}>
-                                {node.attachedRune && <Rune rune={node.attachedRune} isUsed={false}></Rune>}
+                            <span
+                                className="rune-wrapper"
+                                onMouseOver={(e) => { this.onMouseOver(e, node); }}
+                                onClick={(e) => { this.onMouseOver(e, node); }}
+                                onMouseOut={this.onMouseOut}
+                            >
+                                {node.attachedRune && <Rune rune={node.attachedRune} isUsed={false} />}
                             </span>
                         </Socket>
                     </span>
-                }
+                )}
             </Droppable>
         );
     }
@@ -122,7 +125,7 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
         const { relatedSchoolId, treeStore } = this.props;
         let treeNodes: ISkillsTreeNode[] = [];
         if (relatedSchoolId) {
-            let tree = treeStore.getTree(relatedSchoolId);
+            const tree = treeStore.getTree(relatedSchoolId);
             treeNodes = tree ? [tree] : [];
             this.childToParent.clear();
             this.setChildToParent(tree);
@@ -146,7 +149,7 @@ class SkillsTree extends React.PureComponent<SkillsTreeProps> {
                         </tbody>
                     </table>
                 </div>
-                
+
             </div>
         );
     }

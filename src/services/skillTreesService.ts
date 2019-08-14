@@ -1,6 +1,6 @@
 import * as Models from '../components/tree/models';
 
-let fireTree: Models.ITreeNode = {
+const fireTree: Models.ITreeNode = {
     id: 'Fire Root',
     isRoot: true,
     children: [{
@@ -10,28 +10,28 @@ let fireTree: Models.ITreeNode = {
                 id: 'Child 1-1',
                 children: [
                     {
-                        id: 'Child 1-1-1'
+                        id: 'Child 1-1-1',
                     },
-                    {id: 'Child 1-1-2'}  
-                ]
+                    { id: 'Child 1-1-2' },
+                ],
             },
-            {id: 'Child 1-2'},
-            {id: 'Child 1-3'}
-        ]
-    }]
+            { id: 'Child 1-2' },
+            { id: 'Child 1-3' },
+        ],
+    }],
 };
 
-let windTree: Models.ITreeNode = {
+const windTree: Models.ITreeNode = {
     id: 'Wind Root',
-    isRoot: true
+    isRoot: true,
 };
 
 export function loadTreesData() {
     return [{
         parentSchoolId: '1',
-        tree: fireTree
+        tree: fireTree,
     }, {
         parentSchoolId: '2',
-        tree: windTree
+        tree: windTree,
     }];
 }
