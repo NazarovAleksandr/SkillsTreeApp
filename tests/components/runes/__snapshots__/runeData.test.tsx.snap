@@ -31,7 +31,7 @@ exports[`RuneData Renders negative props: negativeProps 1`] = `
     </div>
   </div>
   <div
-    key="Evade"
+    key="Evade-10"
   >
     <span
       className="title"
@@ -80,7 +80,7 @@ exports[`RuneData Renders positive props: positiveProps 1`] = `
     </div>
   </div>
   <div
-    key="Evade"
+    key="Evade10"
   >
     <span
       className="title"
@@ -129,7 +129,7 @@ exports[`RuneData Renders rare rarity: rareRarity 1`] = `
     </div>
   </div>
   <div
-    key="Evade"
+    key="Evade-10"
   >
     <span
       className="title"
@@ -178,7 +178,7 @@ exports[`RuneData Renders unique rarity: uniqueRarity 1`] = `
     </div>
   </div>
   <div
-    key="Evade"
+    key="Evade-10"
   >
     <span
       className="title"

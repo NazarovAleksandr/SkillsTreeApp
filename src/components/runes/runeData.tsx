@@ -38,7 +38,7 @@ const RuneData = observer((props: Models.IRuneDataProps) => {
                 const valueClassName = `property-value ${isPositive ? 'positive' : 'negative'}`;
                 const value = isPositive ? `+${prop.value}` : prop.value;
                 return (
-                    <div key={prop.name}>
+                    <div key={prop.name + prop.value}>
                         <span className="title">
                             {prop.name}
                         :
