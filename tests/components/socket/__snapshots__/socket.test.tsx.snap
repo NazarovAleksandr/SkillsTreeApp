@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Socket Renders different splashes: socket with common splash 1`] = `
+<span
+  className="rune-socket drop-allowed common-splash"
+>
+  test
+</span>
+`;
+
+exports[`Socket Renders different splashes: socket with rare splash 1`] = `
+<span
+  className="rune-socket drop-allowed rare-splash"
+>
+  test
+</span>
+`;
+
+exports[`Socket Renders different splashes: socket with unique splash 1`] = `
+<span
+  className="rune-socket drop-allowed unique-splash"
+>
+  test
+</span>
+`;
+
+exports[`Socket Renders with child: socket with child 1`] = `
+<span
+  className="rune-socket  common-splash"
+>
+  test
+</span>
+`;
+
+exports[`Socket Renders with rune over: socket with rune over 1`] = `
+<span
+  className="rune-socket drop-allowed common-splash"
+>
+  test
+</span>
+`;

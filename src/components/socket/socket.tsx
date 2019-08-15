@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { SocketProps } from './models';
+import { constants } from '../../utils';
 
 export class Socket extends React.PureComponent<SocketProps> {
-    private socketRef = React.createRef<HTMLSpanElement>();
+    public socketRef = React.createRef<HTMLSpanElement>();
+
+    public animationTimeout = 1000;
 
     public componentDidUpdate(prevProps: SocketProps) {
         const { rune, nodeId } = this.props;
         if (prevProps.rune !== rune && nodeId === prevProps.nodeId) {
-            this.socketRef.current.classList.add('splash-animated');
+            this.socketRef.current.classList.add(constants.splashAnimated);
             setTimeout(() => {
-                this.socketRef.current.classList.remove('splash-animated');
-            }, 1000);
+                this.socketRef.current.classList.remove(constants.splashAnimated);
+            }, this.animationTimeout);
         }
     }
 
