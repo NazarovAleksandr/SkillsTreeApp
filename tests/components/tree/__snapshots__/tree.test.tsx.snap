@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tree Renders TreeNode: tree node 1`] = `
+<div
+  className="node-container"
+>
+  <div
+    className="node"
+    onClick={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    1
+  </div>
+  <div
+    className="children-list"
+  >
+    <Memo(wrappedComponent)
+      key="2"
+      node={
+        Object {
+          "id": "2",
+        }
+      }
+      nodeContent={[Function]}
+    />
+    <Memo(wrappedComponent)
+      key="3"
+      node={
+        Object {
+          "id": "3",
+        }
+      }
+      nodeContent={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`Tree Renders roots: roots 1`] = `
+<div
+  className="tree"
+>
+  <Memo(wrappedComponent)
+    key="1"
+    node={
+      Object {
+        "children": Array [
+          Object {
+            "id": "2",
+          },
+        ],
+        "id": "1",
+      }
+    }
+    nodeContent={[Function]}
+  />
+  <Memo(wrappedComponent)
+    key="3"
+    node={
+      Object {
+        "children": Array [
+          Object {
+            "id": "4",
+          },
+        ],
+        "id": "3",
+      }
+    }
+    nodeContent={[Function]}
+  />
+</div>
+`;
