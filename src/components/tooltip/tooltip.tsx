@@ -23,19 +23,20 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
     }
 
     private invalidateTooltipPosition = () => {
-        if (this.props.visible) {
-            const rect = this.props.node.getBoundingClientRect();
-            const { x, y, calculatedPosition } = this.calcTooltipCoordinates(this.props.position, rect);
+        const { visible, node, position } = this.props;
+        if (visible) {
+            const rect = node.getBoundingClientRect();
+            const { x, y, calculatedPosition } = this.calcTooltipCoordinates(position, rect);
             this.tooltipPosition = calculatedPosition;
 
             this.tooltipRef.current.style.transform = `translate(${x}px, ${y}px)`;
         }
     }
 
-    private calcTooltipCoordinates(position: Models.TooltipPositions, rect: ClientRect | DOMRect): any {
+    private calcTooltipCoordinates(requestedPosition: Models.TooltipPositions, rect: ClientRect | DOMRect): Models.ICoordinatesWithPosition {
         const refRect = this.tooltipRef.current.firstElementChild.getBoundingClientRect();
 
-        const calculatedPosition = position;
+        const calculatedPosition = requestedPosition;
 
         let x = rect.left;
         let y = rect.top;
@@ -55,27 +56,28 @@ export class Tooltip extends React.PureComponent<Models.ITooltipProps> {
             x += rect.width / 2;
             y += rect.height;
             break;
+        default:
+            break;
         }
 
-        if (cuttingDetected && this.props.position === position) {
-            return this.calcTooltipCoordinates(oppositePositions.get(position), this.props.node.getBoundingClientRect());
+        const { position, node } = this.props;
+        if (cuttingDetected && position === requestedPosition) {
+            return this.calcTooltipCoordinates(oppositePositions.get(position), node.getBoundingClientRect());
         }
 
         return { x, y, calculatedPosition };
     }
 
     public render() {
-        const tooltipContent = this.props.content;
-        const isVisible = this.props.visible;
-        const outCallback = this.props.mouseOutCallback;
+        const { content, visible, mouseOutCallback } = this.props;
 
         return (
             <FuncTooltip
                 ref={this.tooltipRef}
-                isVisible={isVisible}
+                isVisible={visible}
                 position={this.tooltipPosition}
-                tooltipContent={tooltipContent}
-                mouseOutCallback={outCallback}
+                tooltipContent={content}
+                mouseOutCallback={mouseOutCallback}
             />
         );
     }

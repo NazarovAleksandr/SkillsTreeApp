@@ -47,7 +47,7 @@ tree.children[0].children.forEach((child, idx) => {
     child.attachedRune = runesStore.getRunes()[idx];
 });
 
-for (let i = 0; i < 22; i++) {
+for (let i = 0; i < 22; i += 1) {
     runesStore.addRune(runesStore.generateRune());
 }
 

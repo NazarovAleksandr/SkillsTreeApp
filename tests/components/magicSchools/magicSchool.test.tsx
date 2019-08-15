@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow, mount, ReactWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import MagicSchool from '../../../src/components/magicSchools/magicSchool';
 
 describe('MagicSchool', () => {

@@ -3,9 +3,9 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import MagicSchools from '../components/magicSchools/magicSchools';
+import { MagicSchools } from '../components/magicSchools/magicSchools';
 import SkillsTree from '../components/skillsTree/skillsTree';
-import RunesList from '../components/runes/runesList';
+import { RunesList } from '../components/runes/runesList';
 import * as Models from '../components/magicSchools/models';
 import { IUserSkillsPageProps } from './models';
 import * as utils from '../utils';
@@ -17,30 +17,37 @@ export class UserSkillsPage extends React.PureComponent<IUserSkillsPageProps> {
     public activeSchool: Models.IMagicSchool;
 
     public componentDidMount() {
-        this.setActiveSchool(this.props.uiStateStore.getSelectedSchoolId());
-    }
-
-    private setActiveSchool = (schoolId: string) => {
-        this.activeSchool = this.props.magicSchoolsStore.getSchool(schoolId);
+        const { uiStateStore } = this.props;
+        this.setActiveSchool(uiStateStore.getSelectedSchoolId());
     }
 
     public onRuneDropped = (result: DropResult) => {
         const { source, destination } = result;
         if (source && destination) {
-            const rune = this.props.runesStore.getRune(source.droppableId);
-            const node = this.props.skillTreesStore.getNode(destination.droppableId);
+            const { runesStore, skillTreesStore } = this.props;
+            const rune = runesStore.getRune(source.droppableId);
+            const node = skillTreesStore.getNode(destination.droppableId);
 
             if (rune && node) {
                 node.attachedRune = rune;
-                navigator.vibrate && navigator.vibrate([100]);
+                if (navigator.vibrate) {
+                    navigator.vibrate([100]);
+                }
             }
         }
         document.body.classList.remove(utils.constants.dragInProgress);
     }
 
-    public onDragStart() {
+    public onDragStart = () => {
         document.body.classList.add(utils.constants.dragInProgress);
-        navigator.vibrate && navigator.vibrate([100]);
+        if (navigator.vibrate) {
+            navigator.vibrate([100]);
+        }
+    }
+
+    private setActiveSchool = (schoolId: string) => {
+        const { magicSchoolsStore } = this.props;
+        this.activeSchool = magicSchoolsStore.getSchool(schoolId);
     }
 
     public render() {

@@ -7,24 +7,24 @@ import { ISkillsTreeNode } from '../components/skillsTree/models';
 
 
 export class SkillTreesStore {
-	@observable private trees: IObservableArray<ISkillsTreeNode>;
+    @observable private trees: IObservableArray<ISkillsTreeNode>;
 
-	@observable private schoolIdToTree: {[key: string]: ISkillsTreeNode}
+    @observable private schoolIdToTree: {[key: string]: ISkillsTreeNode}
 
-	constructor() {
-	    this.trees = observable([]);
-	    this.schoolIdToTree = {};
-	}
+    constructor() {
+        this.trees = observable([]);
+        this.schoolIdToTree = {};
+    }
 
     @action.bound
-	public removeTree(schoolId: string) {
-	    const treeToRemove = this.schoolIdToTree[schoolId];
-	    const idx = this.trees.findIndex((tree) => tree === treeToRemove);
-	    if (idx > -1) {
-	        this.trees.splice(idx, 1);
-	        this.schoolIdToTree[schoolId] = undefined;
-	    }
-	}
+    public removeTree(schoolId: string) {
+        const treeToRemove = this.schoolIdToTree[schoolId];
+        const idx = this.trees.findIndex((tree) => tree === treeToRemove);
+        if (idx > -1) {
+            this.trees.splice(idx, 1);
+            this.schoolIdToTree[schoolId] = undefined;
+        }
+    }
 
     @action.bound
     public addTree(schoolId: string, tree: ISkillsTreeNode) {
@@ -46,7 +46,7 @@ export class SkillTreesStore {
     get totalNodesCount() {
         let count = 0;
         this.trees.forEach((tree) => {
-            count++;
+            count += 1;
             if (tree.children) {
                 tree.children.forEach((child) => {
                     count += this.getLength(child);

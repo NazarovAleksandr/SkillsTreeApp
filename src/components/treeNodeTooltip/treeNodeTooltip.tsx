@@ -19,8 +19,8 @@ const TreeNodeTooltip = (props: Models.ITreeNodeTooltip) => {
     return (
         <div className="tree-node-tooltip">
             <div className="actions">
-                <div className="action" onClick={onAdd}>Add child</div>
-                <div className={disableableClassName} onClick={onRemove}>Remove node</div>
+                <div className="action" onClick={onAdd} role="button" tabIndex={0}>Add child</div>
+                <div className={disableableClassName} onClick={onRemove} role="button" tabIndex={0}>Remove node</div>
             </div>
             <div className="node-info">
                 {runeInfo}

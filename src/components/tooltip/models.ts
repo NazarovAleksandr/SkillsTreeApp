@@ -12,8 +12,14 @@ export interface ITooltipProps {
 
 export interface IFuncTooltipProps {
     isVisible: boolean;
-    children: ReactNode;
+    children?: ReactNode;
     tooltipContent: ReactNode;
     position: TooltipPositions;
     mouseOutCallback?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+}
+
+export interface ICoordinatesWithPosition {
+    x: number;
+    y: number;
+    calculatedPosition: TooltipPositions;
 }

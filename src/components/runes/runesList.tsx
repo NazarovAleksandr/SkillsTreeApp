@@ -1,15 +1,21 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import * as Models from './models';
-import Rune from './rune';
-import './styles.scss';
 import {
     Draggable, Droppable, DraggableStateSnapshot, DraggingStyle, NotDraggingStyle,
 } from 'react-beautiful-dnd';
+import * as Models from './models';
+import Rune from './rune';
+import './styles.scss';
 import RuneData from './runeData';
 import { TooltipContext } from '../../contexts/tooltip';
 import * as utils from '../../utils';
 import { TooltipStateStore } from '../../stores/tooltipState';
+import { RunesStore } from '../../stores/runes';
+
+interface IRunesListProps {
+    runesStore: RunesStore;
+    usedRunes: Set<Models.IRune>;
+}
 
 function getStyle(style: DraggingStyle | NotDraggingStyle, snapshot: DraggableStateSnapshot) {
     if (!snapshot.isDropAnimating || !snapshot.draggingOver) {
@@ -31,12 +37,12 @@ export const DraggableContainer = (props: Models.IDraggableContainerProps) => {
             {(provided) => (
                 <span ref={provided.innerRef}>
                     <Draggable draggableId={draggableId} index={index}>
-                        {(provided, snapshot) => (
+                        {(providedFromDraggable, snapshot) => (
                             <span
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                style={getStyle(provided.draggableProps.style, snapshot)}
+                                ref={providedFromDraggable.innerRef}
+                                {...providedFromDraggable.draggableProps}
+                                {...providedFromDraggable.dragHandleProps}
+                                style={getStyle(providedFromDraggable.draggableProps.style, snapshot)}
                             >
                                 {children}
                             </span>
@@ -49,13 +55,14 @@ export const DraggableContainer = (props: Models.IDraggableContainerProps) => {
 };
 
 @observer
-export class RunesList extends React.PureComponent<Models.IRunesListProps> {
+export class RunesList extends React.PureComponent<IRunesListProps> {
     public generateRune = () => {
-        const newRune = this.props.runesStore.generateRune();
-        this.props.runesStore.addRune(newRune);
+        const { runesStore } = this.props;
+        const newRune = runesStore.generateRune();
+        runesStore.addRune(newRune);
     }
 
-    public onMouseOver(e: React.MouseEvent<HTMLSpanElement, MouseEvent>, tooltipStore: TooltipStateStore, rune: Models.IRune) {
+    public onMouseOver = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>, tooltipStore: TooltipStateStore, rune: Models.IRune) => {
         if (document.body.classList.contains(utils.constants.dragInProgress)) {
             return;
         }
@@ -63,14 +70,14 @@ export class RunesList extends React.PureComponent<Models.IRunesListProps> {
     }
 
     public render() {
-        const { usedRunes } = this.props;
-        const runes = this.props.runesStore.getRunes().filter((rune) => !usedRunes.has(rune));
+        const { usedRunes, runesStore } = this.props;
+        const runes = runesStore.getRunes().filter((rune) => !usedRunes.has(rune));
 
         return (
             <div className="runes-block">
                 <div className="block-title">
                     <span className="title">Runes</span>
-                    <div className="action" onClick={this.generateRune}>Generate new Rune</div>
+                    <div className="action" onClick={this.generateRune} role="button" tabIndex={0}>Generate new Rune</div>
                 </div>
                 <div className="runes-list">
                     {runes.map((rune, idx, arr) => {
@@ -84,6 +91,8 @@ export class RunesList extends React.PureComponent<Models.IRunesListProps> {
                                         {
                                             (tooltipStore) => (
                                                 <span
+                                                    role="button"
+                                                    tabIndex={0}
                                                     className="rune-wrapper"
                                                     onMouseOver={(e) => { this.onMouseOver(e, tooltipStore, reversedRune); }}
                                                     onClick={(e) => { this.onMouseOver(e, tooltipStore, reversedRune); }}

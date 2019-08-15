@@ -3,41 +3,53 @@ import { observer } from 'mobx-react';
 import * as Models from './models';
 import MagicSchool from './magicSchool';
 import './styles.scss';
+import { MagicSchoolsUIStateStore, MagicSchoolsStore } from '../../stores/magicSchool';
+
+interface IMagicSchoolListProps {
+    schoolsStore: MagicSchoolsStore;
+    uiStateStore: MagicSchoolsUIStateStore;
+}
 
 @observer
-export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListProps> {
+export class MagicSchools extends React.PureComponent<IMagicSchoolListProps> {
     public addNewItem = () => {
-        const newSchool = this.props.schoolsStore.generateSchool();
-        this.props.schoolsStore.addSchool(newSchool);
+        const { schoolsStore, uiStateStore } = this.props;
+        const newSchool = schoolsStore.generateSchool();
+        schoolsStore.addSchool(newSchool);
         this.selectItem(newSchool.id);
-        this.props.uiStateStore.startSchoolEdition();
+        uiStateStore.startSchoolEdition();
     }
 
     public startEdition = () => {
-        this.props.uiStateStore.startSchoolEdition();
+        const { uiStateStore } = this.props;
+        uiStateStore.startSchoolEdition();
     }
 
     public onEditionEnd = (school: Models.IMagicSchool, newName: string) => {
         const trimmedName = newName.trim();
         if (trimmedName) {
-            this.props.uiStateStore.endSchoolEdition();
+            const { uiStateStore } = this.props;
+            uiStateStore.endSchoolEdition();
             school.name = trimmedName;
         }
     }
 
     public deleteItem = () => {
-        this.props.schoolsStore.removeSchool(this.props.uiStateStore.getSelectedSchoolId());
-        this.props.uiStateStore.deselectSchool();
+        const { schoolsStore, uiStateStore } = this.props;
+        schoolsStore.removeSchool(uiStateStore.getSelectedSchoolId());
+        uiStateStore.deselectSchool();
     }
 
     public selectItem = (schoolId: string) => {
-        if (this.props.uiStateStore.getSelectedSchoolId() !== schoolId) {
-            this.props.uiStateStore.setActiveSchool(schoolId);
+        const { uiStateStore } = this.props;
+        if (uiStateStore.getSelectedSchoolId() !== schoolId) {
+            uiStateStore.setActiveSchool(schoolId);
         }
     }
 
     public render() {
-        const togglableButtonsClass = `action${this.props.uiStateStore.getSelectedSchoolId() ? '' : ' disabled'}`;
+        const { schoolsStore, uiStateStore } = this.props;
+        const togglableButtonsClass = `action${uiStateStore.getSelectedSchoolId() ? '' : ' disabled'}`;
 
         return (
             <div className="schools-block">
@@ -45,12 +57,12 @@ export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListPro
                     <span className="title">Magic Pages</span>
                 </div>
                 <div className="schools-list">
-                    {this.props.schoolsStore.getSchools().map((school, idx) => {
-                        const isActive = this.props.uiStateStore.getSelectedSchoolId() === school.id;
-                        const inEdition = this.props.uiStateStore.isInEditionState() && this.props.uiStateStore.getSelectedSchoolId() === school.id;
+                    {schoolsStore.getSchools().map((school) => {
+                        const isActive = uiStateStore.getSelectedSchoolId() === school.id;
+                        const inEdition = uiStateStore.isInEditionState() && uiStateStore.getSelectedSchoolId() === school.id;
                         return (
                             <MagicSchool
-                                key={idx}
+                                key={school.id}
                                 school={school}
                                 inEdition={inEdition}
                                 isActive={isActive}
@@ -61,9 +73,9 @@ export class MagicSchools extends React.PureComponent<Models.IMagicSchoolListPro
                     })}
                 </div>
                 <div className="actions-panel">
-                    <div className="action" onClick={this.addNewItem}>Add</div>
-                    <div className={togglableButtonsClass} onClick={this.startEdition}>Edit</div>
-                    <div className={togglableButtonsClass} onClick={this.deleteItem}>Delete</div>
+                    <div role="button" tabIndex={0} className="action" onClick={this.addNewItem}>Add</div>
+                    <div role="button" tabIndex={0} className={togglableButtonsClass} onClick={this.startEdition}>Edit</div>
+                    <div role="button" tabIndex={0} className={togglableButtonsClass} onClick={this.deleteItem}>Delete</div>
                 </div>
             </div>
         );

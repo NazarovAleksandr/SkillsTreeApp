@@ -15,6 +15,8 @@ const RuneData = observer((props: Models.IRuneDataProps) => {
     case 'Unique':
         rarityClassName += 'unique';
         break;
+    default:
+        break;
     }
 
     return (
@@ -31,15 +33,15 @@ const RuneData = observer((props: Models.IRuneDataProps) => {
                     <span className={rarityClassName}>{rune.rarity}</span>
                 </div>
             </div>
-            {rune.properties.map((prop, idx) => {
+            {rune.properties.map((prop) => {
                 const isPositive = prop.value > 0;
                 const valueClassName = `property-value ${isPositive ? 'positive' : 'negative'}`;
                 const value = isPositive ? `+${prop.value}` : prop.value;
                 return (
-                    <div key={idx}>
+                    <div key={prop.name}>
                         <span className="title">
                             {prop.name}
-:
+                        :
                         </span>
                         {' '}
                         <span className={valueClassName}>{value}</span>

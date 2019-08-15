@@ -7,10 +7,7 @@
         "es6": true
     },
     "rules": {
-        "jsx-quotes": [
-        1,
-        "prefer-double"
-        ],
+        "jsx-quotes": [1, "prefer-double"],
         "linebreak-style": "off",
         "indent": ["error", 4],
         "react/jsx-indent": ["error", 4],
@@ -21,7 +18,15 @@
         "no-bitwise": "off",
         "no-mixed-operators": "off",
         "import/prefer-default-export": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "max-classes-per-file": [1, 2],
+        "@typescript-eslint/interface-name-prefix": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/mouse-events-have-key-events": "off",
+        "react/sort-comp": "off",
+        "react/static-property-placement": "off",
+        "jsx-a11y/no-autofocus": "off",
+        "react/jsx-props-no-spreading": "off"
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {

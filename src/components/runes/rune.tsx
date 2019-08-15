@@ -8,7 +8,7 @@ const Rune = observer((props: Models.IRuneProps) => {
 
     return (
         <div className={runeContainerClassName}>
-            <img className="rune-image" src={rune.image} />
+            <img className="rune-image" alt="rune" src={rune.image} />
         </div>
     );
 });

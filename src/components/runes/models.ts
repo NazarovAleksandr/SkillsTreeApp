@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { RunesStore } from '../../stores/runes';
 
 export interface IProperty {
     name: RunePropertyTypes;
@@ -26,11 +25,6 @@ export interface IRune {
     properties: IProperty[];
     type: RuneTypes;
     image: string;
-}
-
-export interface IRunesListProps {
-    runesStore: RunesStore;
-    usedRunes: Set<IRune>;
 }
 
 export interface IRuneProps {

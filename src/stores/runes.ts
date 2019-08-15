@@ -1,5 +1,5 @@
 import {
-    observable, action, computed, IObservableArray,
+    observable, action, IObservableArray,
 } from 'mobx';
 import * as Models from '../components/runes/models';
 import * as utils from '../utils';
@@ -17,7 +17,7 @@ export class RunesStore {
         Models.RuneTypes.utility,
     ];
 
-    private propTypes: Models.RunePropertyTypes[] = [
+    private propertyTypes: Models.RunePropertyTypes[] = [
         Models.RunePropertyTypes.Evade,
         Models.RunePropertyTypes.Hp,
         Models.RunePropertyTypes.Mp,
@@ -57,6 +57,10 @@ export class RunesStore {
             minPropCount = 2;
             maxPropCount = 4;
             break;
+        default:
+            minPropCount = 1;
+            maxPropCount = 1;
+            break;
         }
 
         return {
@@ -68,7 +72,7 @@ export class RunesStore {
         };
     }
 
-    private generateImage(type: Models.RuneTypes) {
+    private generateImage = (type: Models.RuneTypes) => {
         let imgType = '';
         switch (type) {
         case Models.RuneTypes.attack:
@@ -86,6 +90,9 @@ export class RunesStore {
         case Models.RuneTypes.utility:
             imgType = 'inspiration';
             break;
+        default:
+            imgType = 'inspiration';
+            break;
         }
 
         const typeImages = utils.images[imgType];
@@ -96,17 +103,17 @@ export class RunesStore {
 
     private generateProperties(minPropCount: number, maxPropCount: number) {
         const newProperties: Models.IProperty[] = [];
-        for (let i = 0; i < minPropCount; i++) {
+        for (let i = 0; i < minPropCount; i += 1) {
             newProperties.push({
-                name: this.getRandomEntity(this.propTypes),
+                name: this.getRandomEntity(this.propertyTypes),
                 value: utils.randomizer.getRandomInt(-100, 100),
             });
         }
 
         const randAdditionalPropCount = utils.randomizer.getRandomInt(0, maxPropCount - minPropCount);
-        for (let i = 0; i < randAdditionalPropCount; i++) {
+        for (let i = 0; i < randAdditionalPropCount; i += 1) {
             newProperties.push({
-                name: this.getRandomEntity(this.propTypes),
+                name: this.getRandomEntity(this.propertyTypes),
                 value: utils.randomizer.getRandomInt(-100, 100),
             });
         }
@@ -114,7 +121,5 @@ export class RunesStore {
         return newProperties;
     }
 
-    private getRandomEntity<T>(list: T[]) {
-        return list[utils.randomizer.getRandomInt(0, list.length - 1)];
-    }
+    private getRandomEntity = <T>(list: T[]) => list[utils.randomizer.getRandomInt(0, list.length - 1)];
 }

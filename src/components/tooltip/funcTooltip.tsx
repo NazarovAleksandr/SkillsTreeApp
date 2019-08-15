@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import * as Models from './models';
 
-export const FuncTooltip = observer(React.forwardRef<HTMLDivElement, Models.IFuncTooltipProps>((props, ref) => {
+const tooltip = (props: Models.IFuncTooltipProps, ref: React.Ref<HTMLDivElement>) => {
     const {
         isVisible, children, tooltipContent, position, mouseOutCallback,
     } = props;
@@ -23,4 +23,6 @@ export const FuncTooltip = observer(React.forwardRef<HTMLDivElement, Models.IFun
                 )}
         </div>
     );
-}));
+};
+
+export const FuncTooltip = observer(React.forwardRef<HTMLDivElement, Models.IFuncTooltipProps>(tooltip));
