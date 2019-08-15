@@ -68,7 +68,8 @@ exports[`About page Renders 1`] = `
               >
                 обычные руны
               </span>
-               имеют от 1 до 2 параметров
+               
+              имеют от 1 до 2 параметров
             </li>
             <li>
               <span
@@ -76,7 +77,8 @@ exports[`About page Renders 1`] = `
               >
                 редкие руны
               </span>
-               от 2 до 3
+               
+              от 2 до 3
             </li>
             <li>
               <span
@@ -84,7 +86,8 @@ exports[`About page Renders 1`] = `
               >
                 уникальные руны
               </span>
-               от 2 до 4
+               
+              от 2 до 4
             </li>
           </ul>
         </li>

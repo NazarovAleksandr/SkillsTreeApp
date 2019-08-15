@@ -5,6 +5,7 @@ exports[`Rune Renders not used rune: notUsedRune 1`] = `
   className="rune"
 >
   <img
+    alt="rune"
     className="rune-image"
     src="url"
   />
@@ -16,6 +17,7 @@ exports[`Rune Renders not used rune: usedRune 1`] = `
   className="rune used"
 >
   <img
+    alt="rune"
     className="rune-image"
     src="url"
   />

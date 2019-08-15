@@ -19,7 +19,7 @@ exports[`MagicSchools Makes school editable: One school is in edition state 1`] 
     <MagicSchool
       inEdition={true}
       isActive={true}
-      key="0"
+      key="1"
       onEditionEnd={[Function]}
       onSelect={[Function]}
       school={
@@ -36,18 +36,24 @@ exports[`MagicSchools Makes school editable: One school is in edition state 1`] 
     <div
       className="action"
       onClick={[Function]}
+      role="button"
+      tabIndex={0}
     >
       Add
     </div>
     <div
       className="action"
       onClick={[Function]}
+      role="button"
+      tabIndex={0}
     >
       Edit
     </div>
     <div
       className="action"
       onClick={[Function]}
+      role="button"
+      tabIndex={0}
     >
       Delete
     </div>
@@ -73,7 +79,7 @@ exports[`MagicSchools Renders 1`] = `
   >
     <MagicSchool
       isActive={false}
-      key="0"
+      key="1"
       onEditionEnd={[Function]}
       onSelect={[Function]}
       school={
@@ -85,7 +91,7 @@ exports[`MagicSchools Renders 1`] = `
     />
     <MagicSchool
       isActive={false}
-      key="1"
+      key="2"
       onEditionEnd={[Function]}
       onSelect={[Function]}
       school={
@@ -102,18 +108,24 @@ exports[`MagicSchools Renders 1`] = `
     <div
       className="action"
       onClick={[Function]}
+      role="button"
+      tabIndex={0}
     >
       Add
     </div>
     <div
       className="action disabled"
       onClick={[Function]}
+      role="button"
+      tabIndex={0}
     >
       Edit
     </div>
     <div
       className="action disabled"
       onClick={[Function]}
+      role="button"
+      tabIndex={0}
     >
       Delete
     </div>

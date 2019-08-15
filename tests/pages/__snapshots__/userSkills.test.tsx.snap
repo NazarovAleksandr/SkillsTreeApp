@@ -7,6 +7,7 @@ exports[`UserSkills page Renders 1`] = `
   <MagicSchools
     schoolsStore={
       MagicSchoolsStore {
+        "generateSchool": [Function],
         "schools": Array [],
       }
     }
@@ -32,7 +33,9 @@ exports[`UserSkills page Renders 1`] = `
     <RunesList
       runesStore={
         RunesStore {
-          "propTypes": Array [
+          "generateImage": [Function],
+          "getRandomEntity": [Function],
+          "propertyTypes": Array [
             "Evade",
             "Health",
             "Mana",
