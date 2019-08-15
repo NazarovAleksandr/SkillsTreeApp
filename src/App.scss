@@ -8,6 +8,10 @@
     background-color: black;
 }
 
+*[role="button"] {
+    outline: none;
+}
+
 .App {
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
